@@ -36,14 +36,11 @@
 ## Thanks To
 ```bash
 𝐀𝐮𝐭𝐡𝐨𝐫 : Zeltoria
-Base : Narutomo and Elaina
 Supported By Vynaa Chan
 Thanks To : 
 - Adiwajshing (Author Baileys)
-- Nurutomo (Author Wabot-Aq)
-- BochilGaming (Author Games-Wabot)
-- ShirokamiRyzen (Author Nao-MD)
-- ImYanXiao (Autho Elaina-MD)
-- Ekuzika (Author Gura-MD)
-- David (Author Rest Api Itsrose)
+- DikaArdnt (Base Script)
+- KizakixD
+- DGXeon
+- KirBotz
 - Dan Semua Yang  Berkontribusi Dalam Pengambangan Script Ini 
