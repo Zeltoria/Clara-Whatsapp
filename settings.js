@@ -6,14 +6,6 @@ global.apikeys = 'UnlimitedPremiumXyroineeID'
 // Note: Kalau Lu Gada Apikeynya Daftar Dulu Biar Semua Fiturnya Aktif, Webnya Di Bawah Ya
 // • https://api.xyroinee.xyz
 
-// Panel Njing
-global.domain = "https://zrstore.panelrun.xyz" // 
-global.apikey = 'ptla_HpvztajQnN7c0gcMQsoS4J6PPIWqEUlpktzi4eIpsuw' // Isi Apikey Plta Lu
-global.capikey = 'ptlc_VVBc2zOOrSu54l9ZRanXfpz1rfNRONIIxuBxRNei0rM' // Isi Apikey Pltc Lu
-global.email = 'elistz21@gmail.com'
-global.eggsnya = '15' // id eggs yang dipakai
-global.location = '1' // id location
-
 // Info Owner
 global.owner = ['6285760451683']
 global.nomorown = "6285760451683"
@@ -53,8 +45,6 @@ global.mess = {
     bot: 'Fitur Khusus Bot',
     wait: '_Sedang Di Proses, Mohon Tunggu_...',
     link: '_Uhm...Linknya Mana?',
-    Limit: 'Limit Kamu Sudah Habis, Limit Akan Di Reset Setiap Jam 00.00',
-    nsfw: 'The nsfw feature has not been activated, please contact the admin to activate',
 }
 
 let file = require.resolve(__filename)
