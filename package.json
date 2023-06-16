@@ -5,8 +5,8 @@
   "main": "index.js",
   "type": "commonjs",
   "scripts": {
-    "start": "pm2 start 'node index.js' --name Xyroine --exp-backoff-restart-delay=100 && pm2 logs Xyroine",
-    "start2": "node index.js"
+    "start": "node index.js",
+    "start2": "pm2 start 'node index.js' --name Xyroine --exp-backoff-restart-delay=100 && pm2 logs Xyroine"
   },
   "keywords": [
     "termux",
