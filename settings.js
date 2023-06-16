@@ -2,7 +2,7 @@ const chalk = require("chalk")
 const fs = require("fs")
 
 // Apikey 
-global.apikeys = 'UnlimitedPremiumXyroineeID'
+global.apikeys = 'Apikeylu'
 // Note: Kalau Lu Gada Apikeynya Daftar Dulu Biar Semua Fiturnya Aktif, Webnya Di Bawah Ya
 // • https://api.xyroinee.xyz
 
