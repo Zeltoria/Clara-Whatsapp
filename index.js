@@ -1,17 +1,23 @@
-const { modul } = require('./module');
-const moment = require('moment-timezone');
-const { baileys, boom, chalk, fs, figlet, FileType, path, pino, process, PhoneNumber } = modul;
-const { Boom } = boom
-const { default: ClaraConnect, useSingleFileAuthState, fetchLatestBaileysVersion, generateForwardMessageContent, prepareWAMessageMedia, generateWAMessageFromContent, generateMessageID, downloadContentFromMessage, jidDecode, proto } = require("@adiwajshing/baileys")
+const { default: ClaraConnect, 
+useSingleFileAuthState, 
+fetchLatestBaileysVersion, 
+generateForwardMessageContent, 
+prepareWAMessageMedia, 
+generateWAMessageFromContent, 
+generateMessageID, 
+downloadContentFromMessage, 
+jidDecode, 
+proto 
+} = require("@adiwajshing/baileys")
 const {
-	default: makeWASocket,
-	BufferJSON,
-	initInMemoryKeyStore,
-	DisconnectReason,
-	AnyMessageContent,
-        makeInMemoryStore,
-	useMultiFileAuthState,
-	delay
+default: makeWASocket,
+BufferJSON,
+initInMemoryKeyStore,
+DisconnectReason,
+AnyMessageContent,
+makeInMemoryStore,
+useMultiFileAuthState,
+delay
 } = require("@adiwajshing/baileys")
 const { color, bgcolor } = require('./lib/color')
 const colors = require('colors')
@@ -30,26 +36,26 @@ require('./xyroinee.js')
 require('./index.js')
 
 function title() {
-      console.clear()
-      console.log(chalk.yellow(`\n\n               ${chalk.bold.yellow(`[ ${botname} ]`)}\n\n`))
-      console.log(color(`< ================================================== >`, 'cyan'))
-	console.log(color(`\nClara-MD`,'magenta'))
+console.clear()
+console.log(chalk.yellow(`\n\n               ${chalk.bold.yellow(`[ ${botname} ]`)}\n\n`))
+console.log(color(`< ================================================== >`, 'cyan'))
+console.log(color(`\nClara-MD`,'magenta'))
 }
 
 async function ClaraBot() {
-    	const { state, saveCreds } = await useMultiFileAuthState('session')
-        const Clara = ClaraConnect({
-            printQRInTerminal: true,
-            logger: pino({ level: 'fatal' }),
-            auth: state,
-            browser: [`${botname}`, "Safari", "3.0"],
-	    getMessage: async key => {
-              return {
+const { state, saveCreds } = await useMultiFileAuthState('session')
+const Clara = ClaraConnect({
+printQRInTerminal: true,
+logger: pino({ level: 'fatal' }),
+auth: state,
+browser: [`${botname}`, "Safari", "1.0.0"],
+getMessage: async key => {
+return {
                 
-              }
-          }
-        })
-        store.bind(Clara.ev)
+}
+}
+})
+store.bind(Clara.ev)
 
 console.log(color(figlet.textSync(`Xyroinee-ID`, {
 font: 'Standard',
@@ -83,41 +89,40 @@ ppgroup = await Clara.profilePictureUrl(anu.id, 'image')
 } catch (err) {
 ppgroup = 'https://i.ibb.co/RBx5SQC/avatar-group-large-v2.png?q=60'
 }
-			console.log(json)
-			const res = json[0];
-			if (res.announce == true) {
-				await sleep(2000)
-				Clara.sendMessage(res.id, {
-					text: `「 Group Settings Change 」\n\nGroup has been closed by admin, Now only admins can send messages !`,
-				});
-			} else if (res.announce == false) {
-				await sleep(2000)
-				Clara.sendMessage(res.id, {
-					text: `「 Group Settings Change 」\n\nThe group has been opened by admin, Now participants can send messages !`,
-				});
-			} else if (res.restrict == true) {
-				await sleep(2000)
-				Clara.sendMessage(res.id, {
-					text: `「 Group Settings Change 」\n\nGroup info has been restricted, Now only admin can edit group info !`,
-				});
-			} else if (res.restrict == false) {
-				await sleep(2000)
-				Clara.sendMessage(res.id, {
-					text: `「 Group Settings Change 」\n\nGroup info has been opened, Now participants can edit group info !`,
-				});
-			} else if(!res.desc == ''){
-				await sleep(2000)
-				Clara.sendMessage(res.id, { 
-					text: `「 Group Settings Change 」\n\n*Group description has been changed to*\n\n${res.desc}`,
-				});
-      } else {
-				await sleep(2000)
-				Clara.sendMessage(res.id, {
-					text: `「 Group Settings Change 」\n\n*Group name has been changed to*\n\n*${res.subject}*`,
-				});
-			} 
-			
-		});
+console.log(json)
+const res = json[0];
+if (res.announce == true) {
+await sleep(2000)
+Clara.sendMessage(res.id, {
+text: `「 Pengaturan Grup 」\n\nGrup Telah Di Tutup Oleh Admin, Sekarang Hanya Admin Yang Dapat Mengirim Pesan !`,
+});
+} else if (res.announce == false) {
+await sleep(2000)
+Clara.sendMessage(res.id, {
+text: `「 Pengaturan Grup 」\n\nGrup Telah Di Buka Oleh Admin, Sekarang Semua Peserta Dapat Mengirim Pesan !`,
+});
+} else if (res.restrict == true) {
+await sleep(2000)
+Clara.sendMessage(res.id, {
+text: `「 Pengaturan Grup 」\n\nInfo Grup Di Tutup, Sekarang Hanya Admin Yang Dapat Mengubah Info Grup !`,
+});
+} else if (res.restrict == false) {
+await sleep(2000)
+Clara.sendMessage(res.id, {
+text: `「 Pengaturan Grup 」\n\nInfo Grup Di Buka, Sekarang Peserta Dapat Mengubah Info Grup !`,
+});
+} else if(!res.desc == ''){
+await sleep(2000)
+Clara.sendMessage(res.id, { 
+text: `「 Pengaturan Grup 」\n\n*Deskripsi Grup Di Ubah Ke*\n\n${res.desc}`,
+});
+} else {
+await sleep(2000)
+Clara.sendMessage(res.id, {
+text: `「 Pengaturan Grup 」\n\n*Nama Grup Di Ubah Ke*\n\n*${res.subject}*`,
+});
+} 
+});
 		
 Clara.ev.on('group-participants.update', async (anu) => {
 console.log(anu)
@@ -135,102 +140,87 @@ ppgroup = await Clara.profilePictureUrl(anu.id, 'image')
 } catch (err) {
 ppgroup = 'https://i.ibb.co/RBx5SQC/avatar-group-large-v2.png?q=60'
 }
-//welcome\\
-memb = metadata.participants.length
-XeonWlcm = await getBuffer(ppuser)
-XeonLft = await getBuffer(ppuser)
-                if (anu.action == 'add') {
-                const xeonbuffer = await getBuffer(ppuser)
-                let xeonName = num
-                const xtime = moment.tz('Asia/Kolkata').format('HH:mm:ss')
-	            const xdate = moment.tz('Asia/Kolkata').format('DD/MM/YYYY')
-	            const xmembers = metadata.participants.length
-                xeonbody = `┌─❖
-│「 𝗛𝗶 👋 」
-└┬❖ 「  @${xeonName.split("@")[0]}  」
-   │✑  𝗪𝗲𝗹𝗰𝗼𝗺𝗲 𝘁𝗼 
-   │✑  ${metadata.subject}
-   │✑  𝗠𝗲𝗺𝗯𝗲𝗿 : 
-   │✑ ${xmembers}th
-   │✑  𝗝𝗼𝗶𝗻𝗲𝗱 : 
-   │✑ ${xtime} ${xdate}
-   └───────────────┈ ⳹`
+if (anu.action == 'add') {
+const fotonya = await getBuffer(ppuser)
+const time = moment.tz('Asia/Jakarta').format('HH:mm:ss')
+const date = moment.tz('Asia/Jakarta').format('DD/MM/YYYY')
+const xmembers = metadata.participants.length
+ucapan = `
+┌─❖「  @${num.split("@")[0]}  」
+│✑  Welcome To: 
+│✑  ${metadata.subject}
+│✑  𝗠𝗲𝗺𝗯𝗲𝗿 : 
+│✑ ${xmembers}Th
+│✑  Pada : 
+│✑ ${time} ${date}
+└───────────────┈ ⳹`
 Clara.sendMessage(anu.id,
- { text: xeonbody,
- contextInfo:{
- mentionedJid:[num],
- "externalAdReply": {"showAdAttribution": true,
- "containsAutoReply": true,
- "title": ` ${global.botname}`,
+{ text: ucapan,
+contextInfo:{
+mentionedJid:[num],
+"externalAdReply": {"showAdAttribution": true,
+"containsAutoReply": true,
+"title": ` ${global.botname}`,
+"body": `${ownername}`,
+"previewType": "PHOTO",
+"thumbnailUrl": ``,
+"thumbnail": fotonya,
+"sourceUrl": `${gcwa}`}}})
+} else if (anu.action == 'remove') {
+const fotonye = await getBuffer(ppuser)
+const ttime = moment.tz('Asia/Jakarta').format('HH:mm:ss')
+const ddate = moment.tz('Asia/Jakarta').format('DD/MM/YYYY')
+const mmembers = metadata.participants.length
+sayonara = `
+┌─❖ 「 @${num.split("@")[0]}  」
+│✑  Out From:
+│✑ ${metadata.subject}
+│✑  𝗠𝗲𝗺𝗯𝗲𝗿 : 
+│✑ ${mmembers}th
+│✑  Time : 
+│✑  ${ttime} ${ddate}
+└───────────────┈ ⳹`
+Clara.sendMessage(anu.id,
+{ text: sayonara,
+contextInfo:{
+mentionedJid:[num],
+"externalAdReply": {"showAdAttribution": true,
+"containsAutoReply": true,
+"title": ` ${global.botname}`,
 "body": `${ownername}`,
  "previewType": "PHOTO",
 "thumbnailUrl": ``,
-"thumbnail": XeonWlcm,
-"sourceUrl": `${wagc}`}}})
-                } else if (anu.action == 'remove') {
-                	const xeonbuffer = await getBuffer(ppuser)
-                    const xeontime = moment.tz('Asia/Kolkata').format('HH:mm:ss')
-	                const xeondate = moment.tz('Asia/Kolkata').format('DD/MM/YYYY')
-                	let xeonName = num
-                    const xeonmembers = metadata.participants.length
-                    xeonbody = `┌─❖
-│「 𝗚𝗼𝗼𝗱𝗯𝘆𝗲 👋 」
-└┬❖ 「 @${xeonName.split("@")[0]}  」
-   │✑  𝗟𝗲𝗳𝘁 
-   │✑ ${metadata.subject}
-   │✑  𝗠𝗲𝗺𝗯𝗲𝗿 : 
-   │✑ ${xeonmembers}th
-   │✑  𝗧𝗶𝗺𝗲 : 
-   │✑  ${xeontime} ${xeondate}
-   └───────────────┈ ⳹`
-Clara.sendMessage(anu.id,
- { text: xeonbody,
- contextInfo:{
- mentionedJid:[num],
- "externalAdReply": {"showAdAttribution": true,
- "containsAutoReply": true,
- "title": ` ${global.botname}`,
-"body": `${ownername}`,
- "previewType": "PHOTO",
-"thumbnailUrl": ``,
-"thumbnail": XeonLft,
-"sourceUrl": `${wagc}`}}})
+"thumbnail": fotonye,
+"sourceUrl": `${gcwa}`}}})
 } else if (anu.action == 'promote') {
-const xeonbuffer = await getBuffer(ppuser)
-const xeontime = moment.tz('Asia/Kolkata').format('HH:mm:ss')
-const xeondate = moment.tz('Asia/Kolkata').format('DD/MM/YYYY')
-let xeonName = num
-xeonbody = ` 𝗖𝗼𝗻𝗴𝗿𝗮𝘁𝘀🎉 @${xeonName.split("@")[0]}, you have been *promoted* to *admin* 🥳`
-   Clara.sendMessage(anu.id,
- { text: xeonbody,
- contextInfo:{
- mentionedJid:[num],
- "externalAdReply": {"showAdAttribution": true,
- "containsAutoReply": true,
- "title": ` ${global.botname}`,
-"body": `${ownername}`,
- "previewType": "PHOTO",
-"thumbnailUrl": ``,
-"thumbnail": XeonWlcm,
-"sourceUrl": `${wagc}`}}})
-} else if (anu.action == 'demote') {
-const xeonbuffer = await getBuffer(ppuser)
-const xeontime = moment.tz('Asia/Kolkata').format('HH:mm:ss')
-const xeondate = moment.tz('Asia/Kolkata').format('DD/MM/YYYY')
-let xeonName = num
-xeonbody = `𝗢𝗼𝗽𝘀‼️ @${xeonName.split("@")[0]}, you have been *demoted* from *admin* 😬`
+const poto = await getBuffer(ppuser)
+katanya = ` Selamat @${num.split("@")[0]}, Telah Menjadi Admin`
 Clara.sendMessage(anu.id,
- { text: xeonbody,
- contextInfo:{
- mentionedJid:[num],
- "externalAdReply": {"showAdAttribution": true,
- "containsAutoReply": true,
- "title": ` ${global.botname}`,
+{ text: katanya,
+contextInfo:{
+mentionedJid:[num],
+"externalAdReply": {"showAdAttribution": true,
+"containsAutoReply": true,
+"title": ` ${global.botname}`,
 "body": `${ownername}`,
- "previewType": "PHOTO",
+"previewType": "PHOTO",
 "thumbnailUrl": ``,
-"thumbnail": XeonLft,
-"sourceUrl": `${wagc}`}}})
+"thumbnail": ppuser,
+"sourceUrl": `${gcwa}`}}})
+} else if (anu.action == 'demote') {
+katanya = `Yah... @${xeonName.split("@")[0]}, Bukan Admin Lagi`
+Clara.sendMessage(anu.id,
+{ text: katanya,
+contextInfo:{
+mentionedJid:[num],
+"externalAdReply": {"showAdAttribution": true,
+"containsAutoReply": true,
+"title": ` ${global.botname}`,
+"body": `${ownername}`,
+"previewType": "PHOTO",
+"thumbnailUrl": ``,
+"thumbnail": ppuser,
+"sourceUrl": `${gcwa}`}}})
 }
 }
 } catch (err) {
@@ -452,7 +442,7 @@ else if (reason === DisconnectReason.loggedOut) { console.log(`Device Logged Out
 else if (reason === DisconnectReason.restartRequired) { console.log("Restart Required, Restarting..."); ClaraBot(); }
 else if (reason === DisconnectReason.timedOut) { console.log("Connection TimedOut, Reconnecting..."); ClaraBot(); }
 else Clara.end(`Unknown DisconnectReason: ${reason}|${connection}`)
-} else if (connection === "open") { Clara.sendMessage(owner + "@s.whatsapp.net", { text: `*Bot Online!*\n\n\n_Don't forget to support, bro :)_\n\n • YouTube: https://youtube.com/@kizakixd\n\n • GitHub: https://github.com/KiZakiXD\n\n • Instsgram: https://instagram.com/iamkizakixd\n\n • Group : https://chat.whatsapp.com/GMcv3SpmwOz9S6aQzYmUD1\n\n\n_*Thanks to*_\n_*My God*_\n_*Myself*_\n_*Family*_\n_*Friends Who Helped Me Assemble This Script*_` }); }
+} else if (connection === "open") { Clara.sendMessage(owner + "@s.whatsapp.net", { text: `*Aku Aktif!*\n\n\n_Jangan Lupa Support, Kak :)_\n\n • YouTube: https://youtube.com/@Xyroinee\n\n • GitHub: https://github.com/Xyroinee\n\n • Instsgram: https://instagram.com/danilelistz02\n\n\n_*Thanks to*_\n_*My God*_\n_*Myself*_\n_*Family*_\n_*Dan Semua Yang Berkontribusi Dalam Pengembangan Script Ini*_` }); }
 console.log('Connected...', update)
 })
 
@@ -460,66 +450,6 @@ Clara.ev.on('creds.update', await saveCreds)
 
 start('2',colors.bold.white('\nMenunggu Pesan Baru....'))
 
-Clara.sendButtonText = (jid, buttons = [], text, footer, quoted = '', options = {}) => {
-let buttonMessage = {
-text,
-footer,
-buttons,
-headerType: 2,
-...options
-}
-Clara.sendMessage(jid, buttonMessage, { quoted, ...options })
-}
-
-Clara.sendKatalog = async (jid , title = '' , desc = '', gam , options = {}) =>{
-let message = await prepareWAMessageMedia({ image: gam }, { upload: Clara.waUploadToServer })
-const tod = generateWAMessageFromContent(jid,
-{"productMessage": {
-"product": {
-"productImage": message.imageMessage,
-"productId": "9999",
-"title": title,
-"description": desc,
-"currencyCode": "INR",
-"priceAmount1000": "100000",
-"url": `${websitex}`,
-"productImageCount": 1,
-"salePriceAmount1000": "0"
-},
-"businessOwnerJid": `${ownernumber}@s.whatsapp.net`
-}
-}, options)
-return Clara.relayMessage(jid, tod.message, {messageId: tod.key.id})
-} 
-
-Clara.send5ButLoc = async (jid , text = '' , footer = '', img, but = [], options = {}) =>{
-var template = generateWAMessageFromContent(jid, proto.Message.fromObject({
-templateMessage: {
-hydratedTemplate: {
-"hydratedContentText": text,
-"locationMessage": {
-"jpegThumbnail": img },
-"hydratedFooterText": footer,
-"hydratedButtons": but
-}
-}
-}), options)
-Clara.relayMessage(jid, template.message, { messageId: template.key.id })
-}
-
-Clara.sendButImg = async (jid, path, teks, fke, but) => {
-let img = Buffer.isBuffer(path) ? path : /^data:.*?\/.*?;base64,/i.test(path) ? Buffer.from(path.split`,`[1], 'base64') : /^https?:\/\//.test(path) ? await (await getBuffer(path)) : fs.existsSync(path) ? fs.readFileSync(path) : Buffer.alloc(0)
-let fjejfjjjer = {
-image: img, 
-jpegThumbnail: img,
-caption: teks,
-fileLength: "1",
-footer: fke,
-buttons: but,
-headerType: 4,
-}
-Clara.sendMessage(jid, fjejfjjjer, { quoted: m })
-}
 
 return Clara
 
@@ -528,5 +458,4 @@ return Clara
 ClaraBot()
 
 process.on('uncaughtException', function (err) {
-console.log('Caught exception: ', err)
-})
+console.log('Caught exception: ', err)})
