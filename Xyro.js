@@ -1,1 +1,0 @@
-const Support = require('Family')
