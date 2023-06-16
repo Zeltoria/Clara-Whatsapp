@@ -8,6 +8,7 @@
 - Ubah semua Informasi Owner di settings.js
 - Jika sebagian fitur ada yang tidak berfungsi, beli API key lu sendiri
 - Jika kamu mengalami masalah, bisa buat Issues di page ini
+- Sc Ini Belum Selesai Sepenuhnya, Pastikan Selalu Pantau :v 
 
 ### a little about this bot
 - ✔️ | **Simple** 
