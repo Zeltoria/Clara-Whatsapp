@@ -2031,8 +2031,11 @@ let teks = `*Name:* ${anu.data.name}
 *Version:* ${anu.data.version}
 *Images:*
 ${anu.data.images.cover1}
+
 ${anu.data.images.cover2}
+
 ${anu.data.images.icon}
+
 ${anu.data.images.sideicon}
 `
 Clara.sendMessage(m.chat, { image: { url: anu.data.images.cover1 },  caption: teks }, { quoted: m })
@@ -2056,15 +2059,13 @@ let teks = `*Desc:* ${anu.data.desc}
 
 *Alias:* ${anu.data.story_info_list.Alias}
 *Origin:* ${anu.data.story_info_list.Origin}
-*Alias:* ${anu.data.story_info_list.Alias}
 *Species:* ${anu.data.story_info_list.Species}
 *Gender:* ${anu.data.story_info_list.Gender}
 *Affiliation:* ${anu.data.story_info_list.Affiliation}
 *Weapons:* ${anu.data.story_info_list.Weapons}
 *Abilities:* ${anu.data.story_info_list.Abilities}
 *Height:* ${anu.data.story_info_list.Height}
-*Gender:* ${anu.data.story_info_list.Affiliation}
-*Gender:* ${anu.data.story_info_list.Affiliation}
+\n
 `
 for (let v of anu.data.attributes) {
 teks += `*Attribute* : ${v.attribute}\n`
