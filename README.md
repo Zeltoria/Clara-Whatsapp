@@ -8,7 +8,9 @@
 - Ubah semua Informasi Owner di settings.js
 - Jika sebagian fitur ada yang tidak berfungsi, beli API key lu sendiri
 - Jika kamu mengalami masalah, bisa buat Issues di page ini
-- Sc Ini Belum Selesai Sepenuhnya, Pastikan Selalu Pantau :v 
+- Sc Ini Belum Selesai Sepenuhnya, Pastikan Selalu Pantau :v
+- Untuk Node_Module Kalian Bisa Download Dibawah Ini
+- https://www.mediafire.com/file/f52nygbxa8kb580/node_modules.zip/file
 
 ### a little about this bot
 - ✔️ | **Simple** 
