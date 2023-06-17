@@ -1456,6 +1456,42 @@ replygc(db)
 }
 break
 // ===================================== //
+case 'xnxxdl': {
+if (!q) return replygc(`Contoh: 
+${prefix + command} https://www.xnxx.com/video-141ewlbb/free_use_anytime_sex_big_ass_latina_milf_step_mom_after_deal_with_step_son`)
+replygc(mess.wait)
+let anu = await fetchJson(`https://api.xyroinee.xyz/api/downloader/xnxx?url=${q}&apikey=${xyrokey}`)
+Clara.sendMessage(m.chat, { video: { url: anu.data.files.low }, caption: '_Nih Kak Videonya, Jangan Coli Ya_'}, {quoted: m})
+}
+break
+// ===================================== //
+case 'soundcloud': {
+if (!q) return replygc(`Contoh: 
+${prefix + command} https://soundcloud.com/user-602421308/alan-walker-x-emma-steinbakken`)
+replygc(mess.wait)
+let anu = await fetchJson(`https://api.xyroinee.xyz/api/downloader/soundcloud?url=${q}&apikey=${xyrokey}`)
+Clara.sendMessage(m.chat, { audio: { url: anu.data.download }, mimetype: 'audio/mp4' }, { quoted: m })
+}
+break
+// ===================================== //
+case 'tweetdl': case 'tweeter': {
+if (!q) return replygc(`Contoh: 
+${prefix + command} https://twitter.com/faqeeyaaz/status/1242789155173617664?s=20&t=DRgdl9U8MwTwpY0o1o-96g`)
+replygc(mess.wait)
+let anu = await fetchJson(`https://api.xyroinee.xyz/api/downloader/twitter?url=${q}&apikey=${xyrokey}`)
+Clara.sendMessage(m.chat, { video: { url: anu.data.video }, caption: '_Nih Kak Videonya_'}, {quoted: m})
+}
+break
+// ===================================== //
+case 'igdl': case 'instagram': {
+if (!q) return replygc(`Contoh: 
+${prefix + command} https://www.instagram.com/reel/Cf1HZNvvGuM/?igshid=YmMyMTA2M2Y=`)
+replygc(mess.wait)
+let anu = await fetchJson(`https://api.xyroinee.xyz/api/downloader/instagram?url=${q}&apikey=${xyrokey}`)
+Clara.sendMessage(m.chat, { video: { url: anu.data[0].url }, caption: '_Nih Kak Videonya_'}, {quoted: m})
+}
+break
+// ===================================== //
 case 'fbdl': case 'facebook': {
 if (!q) return replygc(`Contoh: 
 ${prefix + command} https://www.facebook.com/TeguhSuwandi19/videos/5230538373729232/?mibextid=XBoEBUlHZ1eoDabU`)
@@ -1493,6 +1529,160 @@ Clara.sendMessage(m.chat, { audio: { url: anu.data.audio }, mimetype: 'audio/mp4
 }
 break
 // ===================================== //
+case 'animechara': {
+if (!q) return replygc(`Example ${prefix+command} Naruto`)
+replygc(mess.wait)
+let anu = await fetchJson(`https://api.xyroinee.xyz/api/anime/character?q=${q}&apikey=${xyrokey}`)
+let teks = ``
+for (let v of anu.data) {
+teks += `*Name* : ${v.name}\n`
+teks += `*Alias* : ${v.alias_name}\n`
+teks += `*Anime* : ${v.anime}\n`
+teks += `*Manga* : ${v.manga}\n`
+teks += `*Link* : ${v.url}\n\n───────────────\n\n`
+}
+replygc(teks)
+}
+break
+// ===================================== //
+case 'komikusearch': {
+if (!q) return replygc(`Example ${prefix+command} Naruto`)
+replygc(mess.wait)
+let anu = await fetchJson(`https://api.xyroinee.xyz/api/anime/komiku-search?q=${q}&apikey=${xyrokey}`)
+let teks = ``
+for (let v of anu.data) {
+teks += `*Title* : ${v.title}\n`
+teks += `*ID* : ${v.title_id}\n`
+teks += `*Status* : ${v.awal}\n`
+teks += `*Terbaru* : ${v.terbaru}\n`
+teks += `*Link* : ${v.url}\n`
+teks += `*Desc* : ${v.description}\n\n───────────────\n\n`
+}
+Clara.sendMessage(m.chat, { image: { url: anu.data[0].thumbnail }, caption: teks }, { quoted: m })
+}
+break
+// ===================================== //
+case 'doujinsearch': {
+if (!q) return replygc(`Example ${prefix+command} Milf`)
+replygc(mess.wait)
+let anu = await fetchJson(`https://api.xyroinee.xyz/api/anime/doujin-search?q=${q}&apikey=${xyrokey}`)
+let teks = ``
+for (let v of anu.data) {
+teks += `*Title* : ${v.title}\n`
+teks += `*Type* : ${v.type}\n`
+teks += `*Status* : ${v.status}\n`
+teks += `*Score* : ${v.score}\n`
+teks += `*Link* : ${v.url}\n\n───────────────\n\n`
+}
+Clara.sendMessage(m.chat, { image: { url: anu.data[0].thumbnail }, caption: teks }, { quoted: m })
+}
+break
+// ===================================== //
+case 'otakusearch': {
+if (!q) return replygc(`Example ${prefix+command} Naruto`)
+replygc(mess.wait)
+let anu = await fetchJson(`https://api.xyroinee.xyz/api/anime/otakudesu-search?q=${q}&apikey=${xyrokey}`)
+let teks = ``
+for (let v of anu.data) {
+teks += `*Title* : ${v.title}\n`
+teks += `*Genre* : ${v.genres}\n`
+teks += `*Status* : ${v.status}\n`
+teks += `*Rating* : ${v.rating}\n`
+teks += `*Link* : ${v.url}\n\n───────────────\n\n`
+}
+Clara.sendMessage(m.chat, { image: { url: anu.data[0].thumbnail }, caption: teks }, { quoted: m })
+}
+break
+// ===================================== //
+case 'nhentaisearch': {
+if (!q) return replygc(`Example ${prefix+command} Milf`)
+replygc(mess.wait)
+let anu = await fetchJson(`https://api.xyroinee.xyz/api/anime/nhentai-search?q=${q}&apikey=${xyrokey}`)
+let teks = ``
+for (let v of anu.data) {
+teks += `*Author* : ${v.author}\n`
+teks += `*Title* : ${v.title}\n`
+teks += `*Index* : ${v.index}\n`
+teks += `*Link* : ${v.link}\n\n───────────────\n\n`
+}
+replygc(teks)
+}
+break
+// ===================================== //
+case 'xnxxsearch': {
+if (!q) return replygc(`Example ${prefix+command} Milf`)
+replygc(mess.wait)
+let anu = await fetchJson(`https://api.xyroinee.xyz/api/search/xnxx?q=${q}&apikey=${xyrokey}`)
+let teks = ``
+for (let v of anu.data.result) {
+teks += `*Title* : ${v.title}\n`
+teks += `*Info* : ${v.info}\n`
+teks += `*Link* : ${v.link}\n\n───────────────\n\n`
+}
+replygc(teks)
+}
+break
+// ===================================== //
+case 'caristicker': {
+if (!q) return replygc(`Example ${prefix+command} Meme`)
+replygc(mess.wait)
+let anu = await fetchJson(`https://api.xyroinee.xyz/api/search/sticker?q=${q}&apikey=${xyrokey}`)
+let teks = ``
+for (let v of anu.data.sticker_url) {
+teks += `${v}\n`
+}
+replygc(teks)
+}
+break
+case 'wattpad': {
+if (!q) return replygc(`Example ${prefix+command} Selingkuhan`)
+replygc(mess.wait)
+let anu = await fetchJson(`https://api.xyroinee.xyz/api/search/wattpad?q=${q}&apikey=${xyrokey}`)
+let teks = ``
+for (let v of anu.data) {
+teks += `*Title* : ${v.judul}\n`
+teks += `*Reads* : ${v.reads}\n`
+teks += `*Vote* : ${v.vote}\n`
+teks += `*Chapter* : ${v.chapter}\n`
+teks += `*Link* : ${v.link}\n`
+teks += `*Desc* : ${v.desc}\n\n───────────────\n\n`
+}
+replygc(teks)
+}
+break
+// ===================================== //
+case 'soundsearch': {
+if (!q) return replygc(`Example ${prefix+command} Alan Walker Not You`)
+replygc(mess.wait)
+let anu = await fetchJson(`https://api.xyroinee.xyz/api/search/soundcloud?q=${q}&apikey=${xyrokey}`)
+let teks = ``
+for (let v of anu.data) {
+teks += `*Title* : ${v.judul}\n`
+teks += `*Link* : ${v.Link}\n\n───────────────\n\n`
+}
+replygc(teks)
+}
+break
+// ===================================== //
+case 'lirik': {
+if (!q) return replygc(`Example ${prefix+command} alan walker not you`)
+replygc(mess.wait)
+let anu = await fetchJson(`https://api.xyroinee.xyz/api/search/lirik?q=${q}&apikey=${xyrokey}`)
+replygc(`${anu.data.lirik}`)
+}
+break
+// ===================================== //
+case 'jadwalbola': {
+replygc(mess.wait)
+let res = await fetchJson(`https://api.xyroinee.xyz/api/search/jadwalbola?&apikey=${xyrokey}`)
+let teks = `Jadwal Bola Hari Ini`
+for (let g of res.data) {
+teks += `${g}\n`
+}
+replygc(teks)
+}
+break
+// ===================================== //
 case 'google': {
 if (!q) return replygc(`Example : ${prefix + command} Cara Berhenti Lihat Cewe Hot Langsung Sange`)
 replygc(mess.wait)
@@ -1517,9 +1707,10 @@ let teks = ``
 for (let v of anu.data) {
 teks += `*Title* : ${v.title}\n`
 teks += `*Rating* : ${v.rating}\n`
-teks += `*Link* : ${v.link}`
+teks += `*Link* : ${v.link}\n`
 teks += `*Icon* : ${v.icon}\n\n───────────────\n\n`
 }
+replygc(teks)
 }
 break
 // ===================================== //
