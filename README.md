@@ -5,18 +5,18 @@
 
 
 ## Baca Sebelum Pakai!!
-- Ubah semua Informasi Owner di settings.js
+- Ubah Semua Informasi Owner Di Settings.js
 - Jika Kamu Mengalami Masalah, Bisa Buat Issues Di Page Ini
 - Sc Ini Belum Selesai Sepenuhnya, Pastikan Selalu Pantau :v
 - Untuk Node_Module Kalian Bisa Download Dibawah Ini
 - https://www.mediafire.com/file/f52nygbxa8kb580/node_modules.zip/file
 
-### a little about this bot
+### Sedikit Tentang Bot
 - ✔️ | **Simple** 
 - ✔️ | **No Button** 
 - ✔️ | **Multi Device** 
 ---------
-### Some of the features include
+### Fitur Yang Dimiliki
 - ✔️ | Anime 
 - ✔️ | Tools 
 - ✔️ | Remini
