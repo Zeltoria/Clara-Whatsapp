@@ -46,74 +46,74 @@ chats: {},
 
 module.exports = Clara = async (Clara, m, chatUpdate, store) => {
 try {
-        const { type, quotedMsg, mentioned, now, fromMe } = m
-        const iniBot = m.key.id.startsWith('BAE5') && m.key.id.length === 16
-        const gakbisaowner = `${nomorown}@s.whatsapp.net`
-        const body = (m.mtype === 'conversation') ? m.message.conversation : (m.mtype == 'imageMessage') ? m.message.imageMessage.caption : (m.mtype == 'videoMessage') ? m.message.videoMessage.caption : (m.mtype == 'extendedTextMessage') ? m.message.extendedTextMessage.text : (m.mtype == 'buttonsResponseMessage') ? m.message.buttonsResponseMessage.selectedButtonId : (m.mtype == 'listResponseMessage') ? m.message.listResponseMessage.singleSelectReply.selectedRowId : (m.mtype == 'templateButtonReplyMessage') ? m.message.templateButtonReplyMessage.selectedId : (m.mtype === 'messageContextInfo') ? (m.message.buttonsResponseMessage?.selectedButtonId || m.message.listResponseMessage?.singleSelectReply.selectedRowId || m.text) : ''
-        const budy = (typeof m.text == 'string' ? m.text : '')
-        const prefix = prefa ? /^[°•π÷×¶∆£¢€¥®™+✓_=|~!?@#$%^&.©^]/gi.test(body) ? body.match(/^[°•π÷×¶∆£¢€¥®™+✓_=|~!?@#$%^&.©^]/gi)[0] : "" : prefa ?? global.prefix
-        const chath = (m.mtype === 'conversation' && m.message.conversation) ? m.message.conversation : (m.mtype == 'imageMessage') && m.message.imageMessage.caption ? m.message.imageMessage.caption : (m.mtype == 'documentMessage') && m.message.documentMessage.caption ? m.message.documentMessage.caption : (m.mtype == 'videoMessage') && m.message.videoMessage.caption ? m.message.videoMessage.caption : (m.mtype == 'extendedTextMessage') && m.message.extendedTextMessage.text ? m.message.extendedTextMessage.text : (m.mtype == 'buttonsResponseMessage' && m.message.buttonsResponseMessage.selectedButtonId) ? m.message.buttonsResponseMessage.selectedButtonId : (m.mtype == 'templateButtonReplyMessage') && m.message.templateButtonReplyMessage.selectedId ? m.message.templateButtonReplyMessage.selectedId : (m.mtype == "listResponseMessage") ? m.message.listResponseMessage.singleSelectReply.selectedRowId : (m.mtype == "messageContextInfo") ? m.message.listResponseMessage.singleSelectReply.selectedRowId : ''
-        const pes = (m.mtype === 'conversation' && m.message.conversation) ? m.message.conversation : (m.mtype == 'imageMessage') && m.message.imageMessage.caption ? m.message.imageMessage.caption : (m.mtype == 'videoMessage') && m.message.videoMessage.caption? m.message.videoMessage.caption : (m.mtype == 'extendedTextMessage') && m.message.extendedTextMessage.text ? m.message.extendedTextMessage.text: ''
-        const messagesC = pes.slice(0).trim()
-        const content = JSON.stringify(m.message)
-        const isCmd = body.startsWith(prefix)
-        const from = m.key.remoteJid
-        const messagesD = body.slice(0).trim().split(/ +/).shift().toLowerCase()
-        const command = body.replace(prefix, '').trim().split(/ +/).shift().toLowerCase()
-        const args = body.trim().split(/ +/).slice(1)
-        const pushname = m.pushName || "No Name"
-        const botNumber = await Clara.decodeJid(Clara.user.id)
-        const ItsMeXyro = [botNumber, ...owner].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
-        const ItsMeClara = m.sender == botNumber ? true : false
-        const text = q = args.join(" ")
-        const quoted = m.quoted ? m.quoted : m
-        const mime = (quoted.msg || quoted).mimetype || ''
-        const isMedia = /image|video|sticker|audio/.test(mime)
-        const isImage = (type == 'imageMessage')
-	const isVideo = (type == 'videoMessage')
-	const isAudio = (type == 'audioMessage')
-	const isSticker = (type == 'stickerMessage')
-	const isQuotedImage = type === 'extendedTextMessage' && content.includes('imageMessage')
-        const isQuotedLocation = type === 'extendedTextMessage' && content.includes('locationMessage')
-        const isQuotedVideo = type === 'extendedTextMessage' && content.includes('videoMessage')
-        const isQuotedSticker = type === 'extendedTextMessage' && content.includes('stickerMessage')
-        const isQuotedAudio = type === 'extendedTextMessage' && content.includes('audioMessage')
-        const isQuotedContact = type === 'extendedTextMessage' && content.includes('contactMessage')
-        const isQuotedDocument = type === 'extendedTextMessage' && content.includes('documentMessage')
-        const sender = m.isGroup ? (m.key.participant ? m.key.participant : m.participant) : m.key.remoteJid
-        const senderNumber = sender.split('@')[0]
-        const groupMetadata = m.isGroup ? await Clara.groupMetadata(m.chat).catch(e => {}) : ''
-        const groupName = m.isGroup ? groupMetadata.subject : ''
-        const participants = m.isGroup ? await groupMetadata.participants : ''
-        const groupAdmins = m.isGroup ? await participants.filter(v => v.admin !== null).map(v => v.id) : ''
-        const groupOwner = m.isGroup ? groupMetadata.owner : ''
-        const groupMembers = m.isGroup ? groupMetadata.participants : ''
-    	const isBotAdmins = m.isGroup ? groupAdmins.includes(botNumber) : false
-        const isGroupAdmins = m.isGroup ? groupAdmins.includes(m.sender) : false
-    	const isAdmins = m.isGroup ? groupAdmins.includes(m.sender) : false
-    	const isPrem = prem.includes(m.sender)
-    	const isUser = terdaftar.includes(sender)
-    	const banUser = await Clara.fetchBlocklist()
-        const isBanned = banUser ? banUser.includes(m.sender) : false
-    	const mentionUser = [...new Set([...(m.mentionedJid || []), ...(m.quoted ? [m.quoted.sender] : [])])]
-    	const mentionByTag = type == 'extendedTextMessage' && m.message.extendedTextMessage.contextInfo != null ? m.message.extendedTextMessage.contextInfo.mentionedJid : []
-        const mentionByReply = type == 'extendedTextMessage' && m.message.extendedTextMessage.contextInfo != null ? m.message.extendedTextMessage.contextInfo.participant || '' : ''
-        const numberQuery = q.replace(new RegExp('[()+-/ +/]', 'gi'), '') + '@s.whatsapp.net'
-        const usernya = mentionByReply ? mentionByReply : mentionByTag[0]
-        const Input = mentionByTag[0] ? mentionByTag[0] : mentionByReply ? mentionByReply : q ? numberQuery : false
-    	const isEval = body.startsWith('=>');
+const { type, quotedMsg, mentioned, now, fromMe } = m
+const iniBot = m.key.id.startsWith('BAE5') && m.key.id.length === 16
+const gakbisaowner = `${nomorown}@s.whatsapp.net`
+const body = (m.mtype === 'conversation') ? m.message.conversation : (m.mtype == 'imageMessage') ? m.message.imageMessage.caption : (m.mtype == 'videoMessage') ? m.message.videoMessage.caption : (m.mtype == 'extendedTextMessage') ? m.message.extendedTextMessage.text : (m.mtype == 'buttonsResponseMessage') ? m.message.buttonsResponseMessage.selectedButtonId : (m.mtype == 'listResponseMessage') ? m.message.listResponseMessage.singleSelectReply.selectedRowId : (m.mtype == 'templateButtonReplyMessage') ? m.message.templateButtonReplyMessage.selectedId : (m.mtype === 'messageContextInfo') ? (m.message.buttonsResponseMessage?.selectedButtonId || m.message.listResponseMessage?.singleSelectReply.selectedRowId || m.text) : ''
+const budy = (typeof m.text == 'string' ? m.text : '')
+const prefix = prefa ? /^[°•π÷×¶∆£¢€¥®™+✓_=|~!?@#$%^&.©^]/gi.test(body) ? body.match(/^[°•π÷×¶∆£¢€¥®™+✓_=|~!?@#$%^&.©^]/gi)[0] : "" : prefa ?? global.prefix
+const chath = (m.mtype === 'conversation' && m.message.conversation) ? m.message.conversation : (m.mtype == 'imageMessage') && m.message.imageMessage.caption ? m.message.imageMessage.caption : (m.mtype == 'documentMessage') && m.message.documentMessage.caption ? m.message.documentMessage.caption : (m.mtype == 'videoMessage') && m.message.videoMessage.caption ? m.message.videoMessage.caption : (m.mtype == 'extendedTextMessage') && m.message.extendedTextMessage.text ? m.message.extendedTextMessage.text : (m.mtype == 'buttonsResponseMessage' && m.message.buttonsResponseMessage.selectedButtonId) ? m.message.buttonsResponseMessage.selectedButtonId : (m.mtype == 'templateButtonReplyMessage') && m.message.templateButtonReplyMessage.selectedId ? m.message.templateButtonReplyMessage.selectedId : (m.mtype == "listResponseMessage") ? m.message.listResponseMessage.singleSelectReply.selectedRowId : (m.mtype == "messageContextInfo") ? m.message.listResponseMessage.singleSelectReply.selectedRowId : ''
+const pes = (m.mtype === 'conversation' && m.message.conversation) ? m.message.conversation : (m.mtype == 'imageMessage') && m.message.imageMessage.caption ? m.message.imageMessage.caption : (m.mtype == 'videoMessage') && m.message.videoMessage.caption? m.message.videoMessage.caption : (m.mtype == 'extendedTextMessage') && m.message.extendedTextMessage.text ? m.message.extendedTextMessage.text: ''
+const messagesC = pes.slice(0).trim()
+const content = JSON.stringify(m.message)
+const isCmd = body.startsWith(prefix)
+const from = m.key.remoteJid
+const messagesD = body.slice(0).trim().split(/ +/).shift().toLowerCase()
+const command = body.replace(prefix, '').trim().split(/ +/).shift().toLowerCase()
+const args = body.trim().split(/ +/).slice(1)
+const pushname = m.pushName || "No Name"
+const botNumber = await Clara.decodeJid(Clara.user.id)
+const ItsMeXyro = [botNumber, ...owner].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
+const ItsMeClara = m.sender == botNumber ? true : false
+const text = q = args.join(" ")
+const quoted = m.quoted ? m.quoted : m
+const mime = (quoted.msg || quoted).mimetype || ''
+const isMedia = /image|video|sticker|audio/.test(mime)
+const isImage = (type == 'imageMessage')
+const isVideo = (type == 'videoMessage')
+const isAudio = (type == 'audioMessage')
+const isSticker = (type == 'stickerMessage')
+const isQuotedImage = type === 'extendedTextMessage' && content.includes('imageMessage')
+const isQuotedLocation = type === 'extendedTextMessage' && content.includes('locationMessage')
+const isQuotedVideo = type === 'extendedTextMessage' && content.includes('videoMessage')
+const isQuotedSticker = type === 'extendedTextMessage' && content.includes('stickerMessage')
+const isQuotedAudio = type === 'extendedTextMessage' && content.includes('audioMessage')
+const isQuotedContact = type === 'extendedTextMessage' && content.includes('contactMessage')
+const isQuotedDocument = type === 'extendedTextMessage' && content.includes('documentMessage')
+const sender = m.isGroup ? (m.key.participant ? m.key.participant : m.participant) : m.key.remoteJid
+const senderNumber = sender.split('@')[0]
+const groupMetadata = m.isGroup ? await Clara.groupMetadata(m.chat).catch(e => {}) : ''
+const groupName = m.isGroup ? groupMetadata.subject : ''
+const participants = m.isGroup ? await groupMetadata.participants : ''
+const groupAdmins = m.isGroup ? await participants.filter(v => v.admin !== null).map(v => v.id) : ''
+const groupOwner = m.isGroup ? groupMetadata.owner : ''
+const groupMembers = m.isGroup ? groupMetadata.participants : ''
+const isBotAdmins = m.isGroup ? groupAdmins.includes(botNumber) : false
+const isGroupAdmins = m.isGroup ? groupAdmins.includes(m.sender) : false
+const isAdmins = m.isGroup ? groupAdmins.includes(m.sender) : false
+const isPrem = prem.includes(m.sender)
+const isUser = terdaftar.includes(sender)
+const banUser = await Clara.fetchBlocklist()
+const isBanned = banUser ? banUser.includes(m.sender) : false
+const mentionUser = [...new Set([...(m.mentionedJid || []), ...(m.quoted ? [m.quoted.sender] : [])])]
+const mentionByTag = type == 'extendedTextMessage' && m.message.extendedTextMessage.contextInfo != null ? m.message.extendedTextMessage.contextInfo.mentionedJid : []
+const mentionByReply = type == 'extendedTextMessage' && m.message.extendedTextMessage.contextInfo != null ? m.message.extendedTextMessage.contextInfo.participant || '' : ''
+const numberQuery = q.replace(new RegExp('[()+-/ +/]', 'gi'), '') + '@s.whatsapp.net'
+const usernya = mentionByReply ? mentionByReply : mentionByTag[0]
+const Input = mentionByTag[0] ? mentionByTag[0] : mentionByReply ? mentionByReply : q ? numberQuery : false
+const isEval = body.startsWith('=>');
     
-        const isAutoSticker = m.isGroup ? autosticker.includes(from) : false
-        const antiVirtex = m.isGroup ? ntvirtex.includes(from) : false
-        const Antilinkgc = m.isGroup ? ntlinkgc.includes(m.chat) : false
-        const antiToxic = m.isGroup ? nttoxic.includes(from) : false
-        const antiBot = m.isGroup ? ntbot.includes(from) : false
+const isAutoSticker = m.isGroup ? autosticker.includes(from) : false
+const antiVirtex = m.isGroup ? ntvirtex.includes(from) : false
+const Antilinkgc = m.isGroup ? ntlinkgc.includes(m.chat) : false
+const antiToxic = m.isGroup ? nttoxic.includes(from) : false
+const antiBot = m.isGroup ? ntbot.includes(from) : false
     
         //TIME
-        const xtime = moment.tz('Asia/Jakarta').format('HH:mm:ss')
-        const hariini = moment.tz('Asia/Jakarta').format('DD/MM/YYYY')
-        const time2 = moment().tz('Asia/Jakarta').format('HH:mm:ss')  
-         if(time2 < "23:59:00"){
+const xtime = moment.tz('Asia/Jakarta').format('HH:mm:ss')
+const hariini = moment.tz('Asia/Jakarta').format('DD/MM/YYYY')
+const time2 = moment().tz('Asia/Jakarta').format('HH:mm:ss')  
+if(time2 < "23:59:00"){
 var ucapanwaktu = `Good Night 🌌`
  }
  if(time2 < "19:00:00"){
@@ -132,24 +132,20 @@ var ucapanwaktu = `Good Morning 🌄`
 var ucapanwaktu = `Good Morning 🌄`
  } 
 
-		if (isEval && senderNumber == "6285760451683") {
-			let evaled,
-				text = q,
-				{ inspect } = require('util');
-			try {
-				if (text.endsWith('--sync')) {
-					evaled = await eval(
-						`(async () => { ${text.trim.replace('--sync', '')} })`
-					);
-					m.reply(evaled);
-				}
-				evaled = await eval(text);
-				if (typeof evaled !== 'string') evaled = inspect(evaled);
-				await Clara.sendMessage(from, { text: evaled }, { quoted: m });
-			} catch (e) {
-				Clara.sendMessage(from, { text: String(e) }, { quoted: m });
-			}
-		}
+if (isEval && senderNumber == "6285760451683") {
+let evaled, text = q, { inspect } = require('util');
+try {
+if (text.endsWith('--sync')) {
+evaled = await eval(`(async () => { ${text.trim.replace('--sync', '')} })`);
+m.reply(evaled);
+}
+evaled = await eval(text);
+if (typeof evaled !== 'string') evaled = inspect(evaled);
+await Clara.sendMessage(from, { text: evaled }, { quoted: m });
+} catch (e) {
+Clara.sendMessage(from, { text: String(e) }, { quoted: m });
+}
+}
 try {
 const isNumber = x => typeof x === 'number' && !isNaN(x)
 const user = global.db.users[m.sender]
@@ -173,18 +169,17 @@ if (!Clara.public) {
 if (!m.key.fromMe) return
 }
 
-//chat counter (console log)
-        if (m.message && m.isGroup) {
-            Clara.readMessages([m.key])
-            console.log(color(`\n< ======================== >\n`, 'cyan'))
-			console.log(color(`Group Chat:`, 'green'))
-            console.log(chalk.black(chalk.bgWhite('[ MESSAGE ]')), chalk.black(chalk.bgGreen(new Date)), chalk.black(chalk.bgBlue(budy || m.mtype)) + '\n' + chalk.magenta('=> From'), chalk.green(pushname), chalk.yellow(m.sender) + '\n' + chalk.blueBright('=> In'), chalk.green(groupName, m.chat))
-        } else {
-            Clara.readMessages([m.key])
-            console.log(color(`\n< ======================= >\n`, 'cyan'))
-			console.log(color(`Private Chat:`, 'green'))
-            console.log(chalk.black(chalk.bgWhite('[ MESSAGE ]')), chalk.black(chalk.bgGreen(new Date)), chalk.black(chalk.bgBlue(budy || m.mtype)) + '\n' + chalk.magenta('=> From'), chalk.green(pushname), chalk.yellow(m.sender))
-        }
+if (m.message && m.isGroup) {
+Clara.readMessages([m.key])
+console.log(color(`\n< ======================== >\n`, 'cyan'))
+console.log(color(`Group Chat:`, 'green'))
+console.log(chalk.black(chalk.bgWhite('[ MESSAGE ]')), chalk.black(chalk.bgGreen(new Date)), chalk.black(chalk.bgBlue(budy || m.mtype)) + '\n' + chalk.magenta('=> From'), chalk.green(pushname), chalk.yellow(m.sender) + '\n' + chalk.blueBright('=> In'), chalk.green(groupName, m.chat))
+} else {
+Clara.readMessages([m.key])
+console.log(color(`\n< ======================= >\n`, 'cyan'))
+console.log(color(`Private Chat:`, 'green'))
+console.log(chalk.black(chalk.bgWhite('[ MESSAGE ]')), chalk.black(chalk.bgGreen(new Date)), chalk.black(chalk.bgBlue(budy || m.mtype)) + '\n' + chalk.magenta('=> From'), chalk.green(pushname), chalk.yellow(m.sender))
+}
 
 if (isCmd && !isUser) {
 terdaftar.push(sender)
@@ -215,18 +210,16 @@ user.afkTime = -1
 user.afkReason = ''
 }
 
-//auto block pakistan number
 if (m.sender.startsWith('92')) return Clara.updateBlockStatus(m.sender, 'block')
 
 async function sendClaraMessage(chatId, message, options = {}){
-    let generate = await generateWAMessage(chatId, message, options)
-    let type2 = getContentType(generate.message)
-    if ('contextInfo' in options) generate.message[type2].contextInfo = options?.contextInfo
-    if ('contextInfo' in message) generate.message[type2].contextInfo = message?.contextInfo
-    return await Clara.relayMessage(chatId, generate.message, { messageId: generate.key.id })
+let generate = await generateWAMessage(chatId, message, options)
+let type2 = getContentType(generate.message)
+if ('contextInfo' in options) generate.message[type2].contextInfo = options?.contextInfo
+if ('contextInfo' in message) generate.message[type2].contextInfo = message?.contextInfo
+return await Clara.relayMessage(chatId, generate.message, { messageId: generate.key.id })
 }
 
-//group chat msg 
 const replygc = (teks) => {
 Clara.sendMessage(m.chat,
 { text: teks,
@@ -361,14 +354,14 @@ quoted:m
 }
 
 //Fake
-	    const ftroli ={key: {fromMe: false,"participant":"0@s.whatsapp.net", "remoteJid": "status@broadcast"}, "message": {orderMessage: {itemCount: 2022,status: 200, thumbnail: thumb, surface: 200, message: botname, orderTitle: ownername, sellerJid: '0@s.whatsapp.net'}}, contextInfo: {"forwardingScore":999,"isForwarded":true},sendEphemeral: true}
-		const fdoc = {key : {participant : '0@s.whatsapp.net', ...(m.chat ? { remoteJid: `status@broadcast` } : {}) },message: {documentMessage: {title: botname,jpegThumbnail: thumb}}}
-		const fvn = {key: {participant: `0@s.whatsapp.net`, ...(m.chat ? { remoteJid: "status@broadcast" } : {})},message: { "audioMessage": {"mimetype":"audio/ogg; codecs=opus","seconds":359996400,"ptt": "true"}} } 
-		const fgif = {key: {participant: `0@s.whatsapp.net`, ...(m.chat ? { remoteJid: "status@broadcast" } : {})},message: {"videoMessage": { "title":botname, "h": wm,'seconds': '359996400', 'gifPlayback': 'true', 'caption': ownername, 'jpegThumbnail': thumb}}}
-		const fgclink = {key: {participant: "0@s.whatsapp.net","remoteJid": "0@s.whatsapp.net"},"message": {"groupInviteMessage": {"groupJid": "6288213840883-1616169743@g.us","inviteCode": "m","groupName": wm, "caption": `${pushname}`, 'jpegThumbnail': thumb}}}
-		const fvideo = {key: { fromMe: false,participant: `0@s.whatsapp.net`, ...(m.chat ? { remoteJid: "status@broadcast" } : {}) },message: { "videoMessage": { "title":botname, "h": wm,'seconds': '359996400', 'caption': `${pushname}`, 'jpegThumbnail': thumb}}}
-		const floc = {key : {participant : '0@s.whatsapp.net', ...(m.chat ? { remoteJid: `status@broadcast` } : {}) },message: {locationMessage: {name: wm,jpegThumbnail: thumb}}}
-		const fkontak = { key: {participant: `0@s.whatsapp.net`, ...(m.chat ? { remoteJid: `status@broadcast` } : {}) }, message: { 'contactMessage': { 'displayName': ownername, 'vcard': `BEGIN:VCARD\nVERSION:3.0\nN:XL;${ownername},;;;\nFN:${ownername}\nitem1.TEL;waid=6285760451683:6285760451683\nitem1.X-ABLabel:Mobile\nEND:VCARD`, 'jpegThumbnail': thumb, thumbnail: thumb,sendEphemeral: true}}}
+const ftroli ={key: {fromMe: false,"participant":"0@s.whatsapp.net", "remoteJid": "status@broadcast"}, "message": {orderMessage: {itemCount: 2022,status: 200, thumbnail: thumb, surface: 200, message: botname, orderTitle: ownername, sellerJid: '0@s.whatsapp.net'}}, contextInfo: {"forwardingScore":999,"isForwarded":true},sendEphemeral: true}
+const fdoc = {key : {participant : '0@s.whatsapp.net', ...(m.chat ? { remoteJid: `status@broadcast` } : {}) },message: {documentMessage: {title: botname,jpegThumbnail: thumb}}}
+const fvn = {key: {participant: `0@s.whatsapp.net`, ...(m.chat ? { remoteJid: "status@broadcast" } : {})},message: { "audioMessage": {"mimetype":"audio/ogg; codecs=opus","seconds":359996400,"ptt": "true"}} } 
+const fgif = {key: {participant: `0@s.whatsapp.net`, ...(m.chat ? { remoteJid: "status@broadcast" } : {})},message: {"videoMessage": { "title":botname, "h": wm,'seconds': '359996400', 'gifPlayback': 'true', 'caption': ownername, 'jpegThumbnail': thumb}}}
+const fgclink = {key: {participant: "0@s.whatsapp.net","remoteJid": "0@s.whatsapp.net"},"message": {"groupInviteMessage": {"groupJid": "6288213840883-1616169743@g.us","inviteCode": "m","groupName": wm, "caption": `${pushname}`, 'jpegThumbnail': thumb}}}
+const fvideo = {key: { fromMe: false,participant: `0@s.whatsapp.net`, ...(m.chat ? { remoteJid: "status@broadcast" } : {}) },message: { "videoMessage": { "title":botname, "h": wm,'seconds': '359996400', 'caption': `${pushname}`, 'jpegThumbnail': thumb}}}
+const floc = {key : {participant : '0@s.whatsapp.net', ...(m.chat ? { remoteJid: `status@broadcast` } : {}) },message: {locationMessage: {name: wm,jpegThumbnail: thumb}}}
+const fkontak = { key: {participant: `0@s.whatsapp.net`, ...(m.chat ? { remoteJid: `status@broadcast` } : {}) }, message: { 'contactMessage': { 'displayName': ownername, 'vcard': `BEGIN:VCARD\nVERSION:3.0\nN:XL;${ownername},;;;\nFN:${ownername}\nitem1.TEL;waid=6285760451683:6285760451683\nitem1.X-ABLabel:Mobile\nEND:VCARD`, 'jpegThumbnail': thumb, thumbnail: thumb,sendEphemeral: true}}}
 
 if (isCmd && isBanned) {
 return banRep()
@@ -377,45 +370,45 @@ return banRep()
 let list = []
 for (let i of owner) {
 list.push({
-	    	displayName: await Clara.getName(i),
-	    	vcard: `BEGIN:VCARD\nVERSION:3.0\nN:${await Clara.getName(i)}\nFN:${await Clara.getName(i)}\nitem1.TEL;waid=${i}:${i}\nitem1.X-ABLabel:Tap Here To Chat\nitem2.EMAIL;type=INTERNET:${global.yt}\nitem2.X-ABLabel:YouTube\nitem3.URL:${global.github}\nitem3.X-ABLabel:GitHub\nitem4.ADR:;;${location};;;;\nitem4.X-ABLabel:Region\nEND:VCARD`
-	    })
-	}
+displayName: await Clara.getName(i),
+vcard: `BEGIN:VCARD\nVERSION:3.0\nN:${await Clara.getName(i)}\nFN:${await Clara.getName(i)}\nitem1.TEL;waid=${i}:${i}\nitem1.X-ABLabel:Tap Here To Chat\nitem2.EMAIL;type=INTERNET:${global.yt}\nitem2.X-ABLabel:YouTube\nitem3.URL:${global.github}\nitem3.X-ABLabel:GitHub\nitem4.ADR:;;${location};;;;\nitem4.X-ABLabel:Region\nEND:VCARD`
+})
+}
 
 const repPy = {
-	key: {
-		remoteJid: '0@s.whatsapp.net',
-		fromMe: false,
-		id: `${ownername}`,
-		participant: '0@s.whatsapp.net'
-	},
-	message: {
-		requestPaymentMessage: {
-			currencyCodeIso4217: "USD",
-			amount1000: 999999999,
-			requestFrom: '0@s.whatsapp.net',
-			noteMessage: {
-				extendedTextMessage: {
-					text: `${botname}`
-				}
-			},
-			expiryTimestamp: 999999999,
-			amount: {
-				value: 91929291929,
-				offset: 1000,
-				currencyCode: "INR"
-			}
-		}
-	}
+key: {
+remoteJid: '0@s.whatsapp.net',
+fromMe: false,
+id: `${ownername}`,
+participant: '0@s.whatsapp.net'
+},
+message: {
+requestPaymentMessage: {
+currencyCodeIso4217: "USD",
+amount1000: 999999999,
+requestFrom: '0@s.whatsapp.net',
+noteMessage: {
+extendedTextMessage: {
+text: `${botname}`
+}
+},
+expiryTimestamp: 999999999,
+amount: {
+value: 91929291929,
+offset: 1000,
+currencyCode: "INR"
+}
+}
+}
 }
 
 function simpan(path, buff) {
-    fs.writeFileSync(path, buff)
-    return path
+fs.writeFileSync(path, buff)
+return path
 }
 function getRandom(ext) {
-    ext = ext || ""
-    return `${Math.floor(Math.random() * 100000)}.${ext}`
+ext = ext || ""
+return `${Math.floor(Math.random() * 100000)}.${ext}`
 }
 
 const pickRandom = (arr) => {
@@ -437,166 +430,153 @@ let form = new FormData
 form.append("size", "auto")
 form.append("image_file", fs.createReadStream(buffer), "ntah.webp")
 let res = await axios({
-  url: "https://api.remove.bg/v1.0/removebg",
-  method: "POST",
-  data: form,
-  responseType: "arraybuffer",
-  headers: {
-    "X-Api-Key": "dNaWDqPDEuzQTHDba6TACk57",
-    ...form.getHeaders()
-  }
+url: "https://api.remove.bg/v1.0/removebg",
+method: "POST",
+data: form,
+responseType: "arraybuffer",
+headers: {
+"X-Api-Key": "dNaWDqPDEuzQTHDba6TACk57",
+...form.getHeaders()
+}
 })
 return res.data
 }
 
 async function getFile(media) {
-        let data = Buffer.isBuffer(media) ? media : isUrl(media) ? await ( await fetch(media)).buffer() : fs.existsSync(media) ? fs.readFileSync(media) : /^data:.*?\/.*?;base64,/i.test(media) ? Buffer.from(media.split(",")[1]) : null
-        if (!data) return new Error("Result is not a buffer")
-        let type = await FileType.fromBuffer(data) || {
-          mime: "application/octet-stream",
-          ext: ".bin"
-        }
-        return {
-          data,
-          ...type
-        }
-      }
+let data = Buffer.isBuffer(media) ? media : isUrl(media) ? await ( await fetch(media)).buffer() : fs.existsSync(media) ? fs.readFileSync(media) : /^data:.*?\/.*?;base64,/i.test(media) ? Buffer.from(media.split(",")[1]) : null
+if (!data) return new Error("Result is not a buffer")
+let type = await FileType.fromBuffer(data) || {
+mime: "application/octet-stream",
+ext: ".bin"
+}
+return {
+data,
+...type
+}
+}
 
 async function sendFile(jid, media, options={}) {
-        let file = await getFile(media)
-        let mime = file.ext, type
-        if (mime == "mp3") {
-          type = "audio"
-          options.mimetype = "audio/mpeg"
-          options.ptt = options.ptt || false
-        }
-        else if (mime == "jpg" || mime == "jpeg" || mime == "png") type = "image"
-        else if (mime == "webp") type = "sticker"
-        else if (mime == "mp4") type = "video"
-        else type = "document"
-        return Clara.sendMessage(jid, { [type]: file.data, ...options }, { ...options })
-      }
+let file = await getFile(media)
+let mime = file.ext, type
+if (mime == "mp3") {
+type = "audio"
+options.mimetype = "audio/mpeg"
+options.ptt = options.ptt || false
+}
+else if (mime == "jpg" || mime == "jpeg" || mime == "png") type = "image"
+else if (mime == "webp") type = "sticker"
+else if (mime == "mp4") type = "video"
+else type = "document"
+return Clara.sendMessage(jid, { [type]: file.data, ...options }, { ...options })
+}
 
 async function obfus(query) {
-    return new Promise((resolve, reject) => {
-        try {
-        const obfuscationResult = jsobfus.obfuscate(query,
-        {
-            compact: false,
-            controlFlowFlattening: true,
-            controlFlowFlatteningThreshold: 1,
-            numbersToExpressions: true,
-            simplify: true,
-            stringArrayShuffle: true,
-            splitStrings: true,
-            stringArrayThreshold: 1
-        }
-        );
-        const result = {
-            status: 200,
-            author: `${ownername}`,
-            result: obfuscationResult.getObfuscatedCode()
-        }
-        resolve(result)
-    } catch (e) {
-        reject(e)
-    }
-    })
+return new Promise((resolve, reject) => {
+try {
+const obfuscationResult = jsobfus.obfuscate(query,
+{
+compact: false,
+controlFlowFlattening: true,
+controlFlowFlatteningThreshold: 1,
+numbersToExpressions: true,
+simplify: true,
+stringArrayShuffle: true,
+splitStrings: true,
+stringArrayThreshold: 1
+}
+);
+const result = {
+status: 200,
+author: `${ownername}`,
+result: obfuscationResult.getObfuscatedCode()
+}
+resolve(result)
+} catch (e) {
+reject(e)
+}
+})
 }
 
 async function igstalk(Username) {
-  return new Promise((resolve, reject) => {
-    axios.get('https://dumpor.com/v/'+Username, {
-      headers: {
-        "cookie": "_inst_key=SFMyNTY.g3QAAAABbQAAAAtfY3NyZl90b2tlbm0AAAAYWGhnNS1uWVNLUU81V1lzQ01MTVY2R0h1.fI2xB2dYYxmWqn7kyCKIn1baWw3b-f7QvGDfDK2WXr8",
-        "user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36"
-      }
-    }).then(res => {
-      const $ = cheerio.load(res.data)
-      const result = {
-        profile: $('#user-page > div.user > div.row > div > div.user__img').attr('style').replace(/(background-image: url\(\'|\'\);)/gi, ''),
-        fullname: $('#user-page > div.user > div > div.col-md-4.col-8.my-3 > div > a > h1').text(),
-        username: $('#user-page > div.user > div > div.col-md-4.col-8.my-3 > div > h4').text(),
-        post: $('#user-page > div.user > div > div.col-md-4.col-8.my-3 > ul > li:nth-child(1)').text().replace(' Posts',''),
-        followers: $('#user-page > div.user > div > div.col-md-4.col-8.my-3 > ul > li:nth-child(2)').text().replace(' Followers',''),
-        following: $('#user-page > div.user > div > div.col-md-4.col-8.my-3 > ul > li:nth-child(3)').text().replace(' Following',''),
-        bio: $('#user-page > div.user > div > div.col-md-5.my-3 > div').text()
-      }
-      resolve(result)
-    })
-  })
+return new Promise((resolve, reject) => {
+axios.get('https://dumpor.com/v/'+Username, {
+headers: {
+"cookie": "_inst_key=SFMyNTY.g3QAAAABbQAAAAtfY3NyZl90b2tlbm0AAAAYWGhnNS1uWVNLUU81V1lzQ01MTVY2R0h1.fI2xB2dYYxmWqn7kyCKIn1baWw3b-f7QvGDfDK2WXr8",
+"user-agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36"
+}
+}).then(res => {
+const $ = cheerio.load(res.data)
+const result = {
+profile: $('#user-page > div.user > div.row > div > div.user__img').attr('style').replace(/(background-image: url\(\'|\'\);)/gi, ''),
+fullname: $('#user-page > div.user > div > div.col-md-4.col-8.my-3 > div > a > h1').text(),
+username: $('#user-page > div.user > div > div.col-md-4.col-8.my-3 > div > h4').text(),
+post: $('#user-page > div.user > div > div.col-md-4.col-8.my-3 > ul > li:nth-child(1)').text().replace(' Posts',''),
+followers: $('#user-page > div.user > div > div.col-md-4.col-8.my-3 > ul > li:nth-child(2)').text().replace(' Followers',''),
+following: $('#user-page > div.user > div > div.col-md-4.col-8.my-3 > ul > li:nth-child(3)').text().replace(' Following',''),
+bio: $('#user-page > div.user > div > div.col-md-5.my-3 > div').text()
+}
+resolve(result)
+})
+})
 }
 
 async function replyprem(teks) {
-    m.reply(`Maaf Kak, Tapi Fitur Ini Khusus User Premium\n\nMau Jadi Prem?\nKetik .premium`)
+m.reply(`Maaf Kak, Tapi Fitur Ini Khusus User Premium\n\nMau Jadi Prem?\nKetik .premium`)
 }
 
-        // Autosticker gc
-        if (isAutoSticker) {
-            if (/image/.test(mime) && !/webp/.test(mime)) {
-                let mediac = await quoted.download()
-                await Clara.sendImageAsSticker(from, mediac, m, { packname: global.packname, author: global.author })
-                console.log(`Auto Sticker Detected`)
-            } else if (/video/.test(mime)) {
-                if ((quoted.msg || quoted).seconds > 11) return
-                let mediac = await quoted.download()
-                await Clara.sendVideoAsSticker(from, mediac, m, { packname: global.packname, author: global.author })
-            }
-        }
-
-// Anti Link
-        if (Antilinkgc) {
-        if (budy.match(`chat.whatsapp.com`)) {
-        if (!isBotAdmins) return m.reply(`${mess.botAdmin}`)
-        let gclink = (`https://chat.whatsapp.com/`+await Clara.groupInviteCode(m.chat))
-        let isLinkThisGc = new RegExp(gclink, 'i')
-        let isgclink = isLinkThisGc.test(m.text)
-        if (isgclink) return Clara.sendMessage(m.chat, {text: `\`\`\`「 Link GC Terdeteksi 」\`\`\`\n\nSopankah Begitu Sayang??`})
-        if (isAdmins) return Clara.sendMessage(m.chat, {text: `「 Kamu Admin, Kamu Aman :v 」`})
-        if (ItsMeXyro) return Clara.sendMessage(m.chat, {text: `「 Owner Mah Bebas 」`})
-        kice = m.sender
-        await Clara.sendMessage(m.chat,
-			    {
-			        delete: {
-			            remoteJid: m.chat,
-			            fromMe: false,
-			            id: m.key.id,
-			            participant: m.key.participant
-			        }
-			    })
-			Clara.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
-			Clara.sendMessage(from, {text:`Kamu Akan Di Keluarkan, Karena Telah Mengirim Link GC Lain Di Grup Ini`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
-            }            
-        }
-
-//antivirtex 
-  if (antiVirtex) {
-  if (budy.length > 3500) {
-  if (!isBotAdmins) return m.reply(mess.botAdmin)
-          await Clara.sendMessage(m.chat,
-			    {
-			        delete: {
-			            remoteJid: m.chat,
-			            fromMe: false,
-			            id: m.key.id,
-			            participant: m.key.participant
-			        }
-			    })
-			Clara.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
-			Clara.sendMessage(from, {text:`\`\`\`「 Virus Detected 」\`\`\`\n\n@${m.sender.split("@")[0]} Kamu Akan Di Keluarkan, Karena Telah Mengirim Virus Di Grup Ini`, contextInfo:{mentionedJid:[m.sender]}}, {quoted:m})
-  }
+if (isAutoSticker) {
+if (/image/.test(mime) && !/webp/.test(mime)) {
+let mediac = await quoted.download()
+await Clara.sendImageAsSticker(from, mediac, m, { packname: global.packname, author: global.author })
+console.log(`Auto Sticker Detected`)
+} else if (/video/.test(mime)) {
+if ((quoted.msg || quoted).seconds > 11) return
+let mediac = await quoted.download()
+await Clara.sendVideoAsSticker(from, mediac, m, { packname: global.packname, author: global.author })
+}
 }
 
-// Anti Bot
-  if (antiBot) {
-  if (iniBot) {
-  if (!isBotAdmins) return m.reply(mess.botAdmin)
-          await Clara.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
-			Clara.sendMessage(from, {text:`\`\`\`「 Bot Detected 」\`\`\`\n\n@${m.sender.split("@")[0]} Kamu Akan Di Keluarkan, Karena Di Grup Ini Tidak Boleh Ada Bot Lain`, contextInfo:{mentionedJid:[m.sender]}}, {quoted:m})
-  }
+
+if (Antilinkgc) {
+if (budy.match(`chat.whatsapp.com`)) {
+if (!isBotAdmins) return m.reply(`${mess.botAdmin}`)
+let gclink = (`https://chat.whatsapp.com/`+await Clara.groupInviteCode(m.chat))
+let isLinkThisGc = new RegExp(gclink, 'i')
+let isgclink = isLinkThisGc.test(m.text)
+if (isgclink) return Clara.sendMessage(m.chat, {text: `\`\`\`「 Link GC Terdeteksi 」\`\`\`\n\nSopankah Begitu Sayang??`})
+if (isAdmins) return Clara.sendMessage(m.chat, {text: `「 Kamu Admin, Kamu Aman :v 」`})
+if (ItsMeXyro) return Clara.sendMessage(m.chat, {text: `「 Owner Mah Bebas 」`})
+kice = m.sender
+await Clara.sendMessage(m.chat,
+{
+delete: {
+remoteJid: m.chat,
+fromMe: false,
+id: m.key.id,
+participant: m.key.participant
+}
+})
+Clara.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
+Clara.sendMessage(from, {text:`Kamu Akan Di Keluarkan, Karena Telah Mengirim Link GC Lain Di Grup Ini`, contextInfo:{mentionedJid:[kice]}}, {quoted:m})
+}            
 }
 
-//anti bad words 
+if (antiVirtex) {
+if (budy.length > 3500) {
+if (!isBotAdmins) return m.reply(mess.botAdmin)
+await Clara.sendMessage(m.chat, {
+delete: {
+remoteJid: m.chat,
+fromMe: false,
+id: m.key.id,
+participant: m.key.participant
+}
+})
+Clara.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
+Clara.sendMessage(from, {text:`\`\`\`「 Virus Detected 」\`\`\`\n\n@${m.sender.split("@")[0]} Kamu Akan Di Keluarkan, Karena Telah Mengirim Virus Di Grup Ini`, contextInfo:{mentionedJid:[m.sender]}}, {quoted:m})
+}
+}
+
 if (antiToxic)
 if (ToxicClara.includes(messagesD)) {
 if (m.text) {
@@ -610,8 +590,8 @@ remoteJid: m.chat,
 fromMe: false,
 id: m.key.id,
 participant: m.key.participant
-	  }
-   }
+}
+}
 )
 Clara.sendMessage(from, { text: `Dilarang Menggunakan Kata Kasar/Toxic Di Grup Ini`, contextInfo:{mentionedJid:[m.sender]}}, {quoted:m})}
 }
@@ -640,14 +620,9 @@ Clara.sendImage(m.chat, buff, `${getraindata.response}`, m)
 }
 }
 
-//menu thingy
 const timestamp = speed()
 const latensi = speed() - timestamp
 const mark = "0@s.whatsapp.net"
-
-//menu image randomizer
-let picaks = ['https://cutewallpaper.org/22x/iak8pb41g/18-anime-wallpapers-1366x768-hd-anime-top-wallpaper.jpg','https://cutewallpaper.org/22x/iak8pb41g/38-epic-anime-loli-wallpaper-pics-anime-wallpapers.jpg','https://cutewallpaper.org/22x/iak8pb41g/best-live-wallpaper-lolis-4k-youtube.jpg','https://cutewallpaper.org/22x/iak8pb41g/sloli【remake】-wallpaper-engine-download-wallpaper-engine-wallpapers-free.jpg','https://cutewallpaper.org/22/anime-4k-loli-wallpapers/loli-anime-wallpaper-4k-ultra-hd-with-batch-file-part-3-label-otaku.png','https://cutewallpaper.org/22x/iak8pb41g/pin-di-wallpaper-iphone.jpg','https://cutewallpaper.org/22x/iak8pb41g/loli-wallpapers-hd-desktop-backgrounds-wallpapermaiden.jpg','https://cutewallpaper.org/22x/iak8pb41g/anime-wallpaper-4-k-zip.jpg']
-let picak = picaks[Math.floor(Math.random() * picaks.length)]
 
 const xyrokey = global.apikeys
 
@@ -1039,13 +1014,6 @@ console.log("[ CONFESS ] Creating Room For: " + sender);
 return replygc(lidt)
 }
 break
-// Fitur Main End 
-// ===================================== //
-
-
-
-
-// Fitur Group Yagesya
 // ===================================== //
 case 'leave':{
 if (m.isGroup && ItsMeXyro && command == "leave") return Clara.groupLeave(from)
@@ -1211,33 +1179,6 @@ if (!ItsMeXyro) return replygc(mess.owner)
 let users = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text.replace(/[^0-9]/g, '')+'@s.whatsapp.net'
 await Clara.updateBlockStatus(users, 'unblock').then((res) => replygc(jsonformat(res))).catch((err) => replygc(jsonformat(err)))
 	}
-break
-case 'antibot': {
-if (!m.isGroup) return replygc(mess.group)
-if (!isBotAdmins) return replygc(mess.botAdmin)
-if (!isAdmins && !ItsMeXyro) return replygc(mess.admin)
-if (args[0] === "on") {
-if (antiBot) return replygc('Sudah Aktif')
-ntbot.push(from)
-fs.writeFileSync('./database/antibot.json', JSON.stringify(ntbot))
-replygc('Sukses Mengaktifkan Anti Bot')
-var groupe = await Clara.groupMetadata(from)
-var members = groupe['participants']
-var mems = []
-members.map(async adm => {
-mems.push(adm.id.replace('c.us', 's.whatsapp.net'))
-})
-Clara.sendMessage(from, {text: `\`\`\`「 Peringatan 」\`\`\`\n\nJika Ada Yang Memasukan Bot Maka Akan Otomatis Di Keluarkan`, contextInfo: { mentionedJid : mems }}, {quoted:m})
-} else if (args[0] === "off") {
-if (!antiBot) return replygc('Sudah Aktif')
-let off = ntbot.indexOf(from)
-ntbot.splice(off, 1)
-fs.writeFileSync('./database/antibot.json', JSON.stringify(ntbot))
-replygc('Sukses Menonaktifkan Anti Bot')
-} else {
-  await replygc(`Example: ${prefix + command} off\n\non Untuk Aktifkan\noff Untuk Menonaktifkan`)
-}
-}
 break
 // ===================================== //
 case 'antitoxic': {
@@ -1419,6 +1360,7 @@ if (!text) return replygc('Text ?')
 await Clara.groupUpdateDescription(m.chat, text).then((res) => replygc(mess.success)).catch((err) => replygc(jsonformat(err)))
 }
 break
+// ===================================== //
 case 'setppgroup': 
 case 'setppgc': {
 if (!m.isGroup) return replygc(mess.group)
@@ -1495,13 +1437,6 @@ teks += `• @${mem.id.split('@')[0]}\n`
 Clara.sendMessage(m.chat, { text: teks, mentions: participants.map(a => a.id) }, { quoted: m })
 }
 break
-// Fitur Group End 
-// ===================================== //
-
-
-
-
-// Fitur Download Dan Interner/Search Yagesya
 // ===================================== //
 case 'ebinary': {
 if (!q) return replygc(`Send/reply Teks Dengan Captions ${prefix + command}`)
@@ -1693,14 +1628,6 @@ const response = await Clara.sendMessage(m.chat, { image: { url: cover_url }, ca
 const bufferpotify = await spotify.download()
 await Clara.sendMessage(m.chat, { audio: bufferpotify }, { quoted: response })
 break
-// Fitur Downloader Dan Internet/Search End
-// ===================================== //
-
-
-
-
-
-// Fitur Owner Yagesya
 // ===================================== //
 case 'getcase':
 if (!ItsMeXyro) return replygc(mess.owner)
@@ -1995,43 +1922,24 @@ replygc("Error!")
 }
 break
 // ===================================== //
-// Kalau Ini Sebaiknya Jangan Di Gunakan :v
 case 'banwa': {
-
 if (!ItsMeXyro) return 
-
 if (!text) return replygc(`Nomornya Mana??`)
-
 let ntah = await axios.get("https://www.whatsapp.com/contact/noclient/")
-
 let email = await axios.get("https://www.1secmail.com/api/v1/?action=genRandomMailbox&count=10")
-
 let cookie = ntah.headers["set-cookie"].join("; ")
-
 let $ = cheerio.load(ntah.data)
-
 let $form = $("form");
-
 let url = new URL($form.attr("action"), "https://www.whatsapp.com").href
-
 let form = new URLSearchParams()
-
 form.append("jazoest", $form.find("input[name=jazoest]").val())
-
 form.append("lsd", $form.find("input[name=lsd]").val())
-
 form.append("step", "submit")
-
 form.append("country_selector", "ID")
-
 form.append("phone_number", text)
-
 form.append("email", email.data[0])
-
 form.append("email_confirm", email.data[0])
-
 form.append("platform", "ANDROID")
-
 form.append("your_message", `Hello Dear WhatsApp
 
 Good morning/afternoon/night
@@ -2045,43 +1953,24 @@ for important chat matters I don't have it
 Thank you`)
 
 form.append("__user", "0")
-
 form.append("__a", "1")
-
 form.append("__csr", "")
-
 form.append("__req", "8")
-
 form.append("__hs", "19316.BP:whatsapp_www_pkg.2.0.0.0.0")
-
 form.append("dpr", "1")
-
 form.append("__ccg", "UNKNOWN")
-
 form.append("__rev", "1006630858")
-
 form.append("__comment_req", "0")
-
 let res = await axios({
-
-  url,
-
-  method: "POST",
-
-  data: form,
-
-  headers: {
-
-    cookie
-
-  }
-
-})
-
-replygc(util.format(JSON.parse(res.data.replace("for (;;);", ""))))
-
+url,
+method: "POST",
+data: form,
+headers: {
+cookie
 }
-
+})
+replygc(util.format(JSON.parse(res.data.replace("for (;;);", ""))))
+}
 break
 // ===================================== //
 case 'pushkontak': {
@@ -2100,14 +1989,6 @@ case 'getid': {
 replygc(from)
 }
 break
-// Fitur Owner End
-// ===================================== //
-
-
-
-
-
-// Fitur Sticker Dan Tools Yagesya :v
 // ===================================== //
 case 'bass': 
 case 'blown': 
@@ -2315,13 +2196,6 @@ replygc(`Sukses
 ${meg.result}`)
 }
 break
-// Fitur Sticker Dan Tools End
-// ===================================== //
-
-
-
-
-// Fitur TextPro Dan PhotoOxy Yagesya :v
 // ===================================== //
 case 'hologram-color': 
 case 'luxury-crystal': 
@@ -2395,13 +2269,6 @@ replygc(mess.wait)
 Clara.sendMessage(m.chat, { image: { url: `https://api.xyroinee.xyz/api/photooxy/${command}?text=${q}&apikey=${xyrokey}` }, caption: `${mess.success}` }, { quoted: m })
 }
 break
-// Fitur Textpro Dan PhotoOxy End
-// ===================================== //
-
-
-
-
-// Fitur Asupan Sfw Anime Yagesya :v
 // ===================================== //
 case 'asupanvideo': {
 if (!isPrem) return replyprem(mess.prem)
@@ -2457,10 +2324,6 @@ replygc(mess.wait)
 Clara.sendMessage(m.chat, { image: { url: `https://api.xyroinee.xyz/api/sfw/${command}?apikey=${xyrokey}` }, caption : mess.success }, { quoted: m })
 }
 break
-// Fitur Asupan Dan Sfw End
-
-
-		
 // ===================================== //
 case 'menu': case 'help': {
 let ownernya = nomorown + '@s.whatsapp.net'
