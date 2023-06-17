@@ -1530,7 +1530,56 @@ Clara.sendMessage(m.chat, { audio: { url: anu.data.audio }, mimetype: 'audio/mp4
 }
 break
 // ===================================== //
-case 'animechara': {
+case 'mangatoons': {
+if (!q) return replygc(`Example ${prefix+command} Naruto`)
+replygc(mess.wait)
+let anu = await fetchJson(`https://api.xyroinee.xyz/api/anime/mal-manga?q=${q}&apikey=${xyrokey}`)
+let teks = ``
+for (let v of anu.data) {
+teks += `*Judul* : ${v.judul}\n`
+teks += `*Genre* : ${v.genre}\n`
+teks += `*Thumbnail* : ${v.thumbnail}\n`
+teks += `*Link* : ${v.link}\n\n───────────────\n\n`
+}
+replygc(teks)
+}
+break
+// ===================================== //
+case 'malmanga': {
+if (!q) return replygc(`Example ${prefix+command} Naruto`)
+replygc(mess.wait)
+let anu = await fetchJson(`https://api.xyroinee.xyz/api/anime/mal-manga?q=${q}&apikey=${xyrokey}`)
+let teks = ``
+for (let v of anu.data) {
+teks += `*Title* : ${v.title}\n`
+teks += `*Type* : ${v.type}\n`
+teks += `*Vol* : ${v.vol}\n`
+teks += `*Score* : ${v.score}\n`
+teks += `*Thumbnail* : ${v.thumbnail}\n`
+teks += `*Link* : ${v.link}\n\n───────────────\n\n`
+}
+replygc(teks)
+}
+break
+// ===================================== //
+case 'malanime': {
+if (!q) return replygc(`Example ${prefix+command} Naruto`)
+replygc(mess.wait)
+let anu = await fetchJson(`https://api.xyroinee.xyz/api/anime/mal-anime?q=${q}&apikey=${xyrokey}`)
+let teks = ``
+for (let v of anu.data) {
+teks += `*Title* : ${v.title}\n`
+teks += `*Type* : ${v.type}\n`
+teks += `*Episode* : ${v.episode}\n`
+teks += `*Score* : ${v.score}\n`
+teks += `*Thumbnail* : ${v.thumbnail}\n`
+teks += `*Link* : ${v.url}\n\n───────────────\n\n`
+}
+replygc(teks)
+}
+break
+// ===================================== //
+case 'malchara': {
 if (!q) return replygc(`Example ${prefix+command} Naruto`)
 replygc(mess.wait)
 let anu = await fetchJson(`https://api.xyroinee.xyz/api/anime/character?q=${q}&apikey=${xyrokey}`)
@@ -1563,6 +1612,42 @@ Clara.sendMessage(m.chat, { image: { url: anu.data[0].thumbnail }, caption: teks
 }
 break
 // ===================================== //
+case 'komikudetail': {
+if (!q) return replygc(`Example ${prefix+command} https://komiku.id/manga/naruto-konohas-story-the-steam-ninja-scrolls/`)
+replygc(mess.wait)
+let anu = await fetchJson(`https://api.xyroinee.xyz/api/anime/komiku-detail?url=${q}&apikey=${xyrokey}`)
+let teks = `*Title:* ${anu.data.title}
+*Awal:* ${anu.data.metadata.awal}
+*Terbaru:* ${anu.data.metadata.terbaru}
+*Tipe:* ${anu.data.metadata.jenis_komik}
+*Komikus:* ${anu.data.metadata.komikus}
+*Cerita:* ${anu.data.metadata.konsep_cerita}
+*Status:* ${anu.data.metadata.status}
+*Pembaca:* ${anu.data.metadata.jumlah_pembaca}
+*Deskripsi:* ${anu.data.description}
+`
+for (let v of anu.data.chapters) {
+teks += `*Chapter* : ${v.chapter}\n`
+teks += `*Link* : ${v.url}\n`
+}
+replygc(teks)
+}
+break
+// ===================================== //
+case 'komikulatest': {
+replygc(mess.wait)
+let anu = await fetchJson(`https://api.xyroinee.xyz/api/anime/komiku-latest?apikey=${xyrokey}`)
+let teks = ``
+for (let v of anu.data) {
+teks += `*Tile* : ${v.title}\n`
+teks += `*Updated* : ${v.updated}\n`
+teks += `*Thumbnail* : ${v.thumbnail}\n`
+teks += `*Link* : ${v.url}\n\n───────────────\n\n`
+}
+replygc(teks)
+}
+break
+// ===================================== //
 case 'doujinsearch': {
 if (!isPrem) return reply(mess.prem)
 if (!q) return replygc(`Example ${prefix+command} Milf`)
@@ -1577,6 +1662,43 @@ teks += `*Score* : ${v.score}\n`
 teks += `*Link* : ${v.url}\n\n───────────────\n\n`
 }
 Clara.sendMessage(m.chat, { image: { url: anu.data[0].thumbnail }, caption: teks }, { quoted: m })
+}
+break
+// ===================================== //
+case 'doujindetail': {
+if (!isPrem) return reply(mess.prem)
+if (!q) return replygc(`Example ${prefix+command} https://212.32.226.234/manga/tonari-no-harukasan/`)
+replygc(mess.wait)
+let anu = await fetchJson(`https://api.xyroinee.xyz/api/anime/doujin-detail?url=${q}&apikey=${xyrokey}`)
+let teks = `*Title:* ${anu.data.title}
+*Tags:* ${anu.data.tags}
+*Thumbnail:* ${anu.data.thumbnail}
+*Status:* ${anu.data.metadata.status}
+*Type:* ${anu.data.metadata.type}
+*Series:* ${anu.data.metadata.series}
+*Author:* ${anu.data.metadata.author}
+*Rating:* ${anu.data.metadata.rating}
+`
+for (let v of anu.data.links) {
+teks += `*Tile* : ${v.title}\n`
+teks += `*Link* : ${v.url}\n`
+}
+replygc(teks)
+}
+break
+// ===================================== //
+case 'doujinlatest': {
+if (!isPrem) return reply(mess.prem)
+replygc(mess.wait)
+let anu = await fetchJson(`https://api.xyroinee.xyz/api/anime/doujin-latest?apikey=${xyrokey}`)
+let teks = ``
+for (let v of anu.data) {
+teks += `*Tile* : ${v.title}\n`
+teks += `*Chapter* : ${v.chapter}\n`
+teks += `*Thumbnail* : ${v.thumbnail}\n`
+teks += `*Link* : ${v.url}\n\n───────────────\n\n`
+}
+replygc(teks)
 }
 break
 // ===================================== //
@@ -1596,6 +1718,46 @@ Clara.sendMessage(m.chat, { image: { url: anu.data[0].thumbnail }, caption: teks
 }
 break
 // ===================================== //
+case 'otakudetail': {
+if (!q) return replygc(`Example ${prefix+command} https://otakudesu.lol/anime/borto-sub-indo/`)
+replygc(mess.wait)
+let anu = await fetchJson(`https://api.xyroinee.xyz/api/anime/otakudesu-detail?url=${q}&apikey=${xyrokey}`)
+let teks = `*Judul:* ${anu.data.judul}
+*Japanesse:* ${anu.data.japanese}
+*Skor:* ${anu.data.skor}
+*Produser:* ${anu.data.produser}
+*Type:* ${anu.data.tipe}
+*Status:* ${anu.data.status}
+*Durasi:* ${anu.data.durasi}
+*Total Episode:* ${anu.data.total_episode}
+*Tanggal Rilis:* ${anu.data.tanggal_rilis}
+*Studio:* ${anu.data.studio}
+*Genre:* ${anu.data.genre}
+*Sinopsis:* ${anu.data.sinopsis}
+*Batch:* ${anu.data.url.batch}
+`
+for (let v of anu.data.url.episodes) {
+teks += `*Tile* : ${v.title}\n`
+teks += `*Link* : ${v.url}\n`
+}
+Clara.sendMessage(m.chat, { image: { url: anu.data.thumbnail }, caption: teks }, { quoted: m })
+}
+break
+// ===================================== //
+case 'otakulatest': {
+replygc(mess.wait)
+let anu = await fetchJson(`https://api.xyroinee.xyz/api/anime/otakudesu-latest?apikey=${xyrokey}`)
+let teks = ``
+for (let v of anu.data) {
+teks += `*Judul* : ${v.title}\n`
+teks += `*Hari* : ${v.day}\n`
+teks += `*Tanggal* : ${v.date}\n`
+teks += `*Link* : ${v.url}\n\n───────────────\n\n`
+}
+replygc(teks)
+}
+break
+// ===================================== //
 case 'nhentaisearch': {
 if (!q) return replygc(`Example ${prefix+command} Milf`)
 replygc(mess.wait)
@@ -1606,6 +1768,30 @@ teks += `*Author* : ${v.author}\n`
 teks += `*Title* : ${v.title}\n`
 teks += `*Index* : ${v.index}\n`
 teks += `*Link* : ${v.link}\n\n───────────────\n\n`
+}
+replygc(teks)
+}
+break
+// ===================================== //
+case 'nhentaidetail': {
+if (!isPrem) return reply(mess.prem)
+if (!q) return replygc(`Example ${prefix+command} https://nhentai.to/g/406924/`)
+replygc(mess.wait)
+let anu = await fetchJson(`https://api.xyroinee.xyz/api/anime/nhentai-detail?url=${q}&apikey=${xyrokey}`)
+let teks = `*Info:* ${anu.data.info}
+`
+Clara.sendMessage(m.chat, { image: { url: anu.data.thumb }, caption: teks }, { quoted: m })
+}
+break
+// ===================================== //
+case 'nhentaiimg': {
+if (!isPrem) return reply(mess.prem)
+if (!q) return replygc(`Example ${prefix+command} https://nhentai.to/g/406924/`)
+replygc(mess.wait)
+let anu = await fetchJson(`https://api.xyroinee.xyz/api/anime/nhentai-getimg?url=${q}&apikey=${xyrokey}`)
+let teks = ``
+for (let v of anu.data) {
+teks += `*Title* : ${v}\n`
 }
 replygc(teks)
 }
@@ -1724,6 +1910,7 @@ let ker = await scp1.cariresep(q)
 replygc(util.format(ker))
 }
 break
+// ===================================== //
 case 'bacaresep':{
 if (!q) return replygc(`Example ${prefix+command} https://resepkoki.id/resep/resep-ayam-geprek-keju/`)
 replygc(mess.wait)
@@ -1821,6 +2008,71 @@ const { name, artists, album_name, release_date, cover_url } = info
 const response = await Clara.sendMessage(m.chat, { image: { url: cover_url }, caption: details }, { quoted: m })
 const bufferpotify = await spotify.download()
 await Clara.sendMessage(m.chat, { audio: bufferpotify }, { quoted: response })
+break
+// ===================================== //
+case 'chargi': {
+if (!q) return replygc(`Example ${prefix+command} Yaemiko`)
+replygc(mess.wait)
+let anu = await fetchJson(`https://api.xyroinee.xyz/api/others/chargi?q=${q}&apikey=${xyrokey}`)
+let teks = `*Name:* ${anu.data.name}
+*FullName:* ${anu.data.fullname}
+*Title:* ${anu.data.title}
+*Rarity:* ${anu.data.rarity}
+*Element:* ${anu.data.element}
+*WeaponType:* ${anu.data.weapontype}
+*Substat:* ${anu.data.substat}
+*Gender:* ${anu.data.gender}
+*Body:* ${anu.data.body}
+*Association:* ${anu.data.association}
+*Affiliation:* ${anu.data.affiliation}
+*Birthdaymmdd:* ${anu.data.birthdaymmdd}
+*Birthday:* ${anu.data.birthday}
+*Constellation:* ${anu.data.constellation}
+*Version:* ${anu.data.version}
+*Images:*
+${anu.data.images.cover1}
+${anu.data.images.cover2}
+${anu.data.images.icon}
+${anu.data.images.sideicon}
+`
+Clara.sendMessage(m.chat, { image: { url: anu.data.images.cover1 },  caption: teks }, { quoted: m })
+}
+break
+// ===================================== //
+case 'heroml': {
+if (!q) return replygc(`Example ${prefix+command} Gusion`)
+replygc(mess.wait)
+let anu = await fetchJson(`https://api.xyroinee.xyz/api/others/heroml?q=${q}&apikey=${xyrokey}`)
+let teks = `*Desc:* ${anu.data.desc}
+*Release:* ${anu.data.release}
+*Role:* ${anu.data.role}
+*Specialty:* ${anu.data.specialty}
+*Lane:* ${anu.data.lane}
+*Price:* ${anu.data.price}
+*Durability:* ${anu.data.gameplay_info.durability}
+*Offense:* ${anu.data.gameplay_info.offense}
+*Control:* ${anu.data.gameplay_info.control_effect}
+*Difficulty:* ${anu.data.gameplay_info.difficulty}
+
+*Alias:* ${anu.data.story_info_list.Alias}
+*Origin:* ${anu.data.story_info_list.Origin}
+*Alias:* ${anu.data.story_info_list.Alias}
+*Species:* ${anu.data.story_info_list.Species}
+*Gender:* ${anu.data.story_info_list.Gender}
+*Affiliation:* ${anu.data.story_info_list.Affiliation}
+*Weapons:* ${anu.data.story_info_list.Weapons}
+*Abilities:* ${anu.data.story_info_list.Abilities}
+*Height:* ${anu.data.story_info_list.Height}
+*Gender:* ${anu.data.story_info_list.Affiliation}
+*Gender:* ${anu.data.story_info_list.Affiliation}
+`
+for (let v of anu.data.attributes) {
+teks += `*Attribute* : ${v.attribute}\n`
+teks += `*Level* : ${v.level_1}\n`
+teks += `*Growth* : ${v.growth}\n\n───────────────\n\n`
+}
+Clara.sendMessage(m.chat, { image: { url: anu.data.hero_img },  caption: teks }, { quoted: m })
+}
 break
 // ===================================== //
 case 'getcase':
