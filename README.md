@@ -45,4 +45,5 @@ Thanks To :
 - KizakixD
 - DGXeon
 - KirBotz
+- Ekuzika
 - Dan Semua Yang  Berkontribusi Dalam Pengambangan Script Ini 
