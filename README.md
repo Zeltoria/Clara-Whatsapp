@@ -37,7 +37,7 @@
 
 ## Thanks To
 ```bash
-𝐀𝐮𝐭𝐡𝐨𝐫 : Zeltoria
+𝐀𝐮𝐭𝐡𝐨𝐫 : Xyroinee
 Supported By Vynaa Chan
 Thanks To : 
 - Adiwajshing (Author Baileys)
