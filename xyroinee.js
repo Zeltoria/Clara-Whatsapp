@@ -1457,6 +1457,7 @@ replygc(db)
 break
 // ===================================== //
 case 'xnxxdl': {
+if (!isPrem) return reply(mess.prem)
 if (!q) return replygc(`Contoh: 
 ${prefix + command} https://www.xnxx.com/video-141ewlbb/free_use_anytime_sex_big_ass_latina_milf_step_mom_after_deal_with_step_son`)
 replygc(mess.wait)
@@ -1563,6 +1564,7 @@ Clara.sendMessage(m.chat, { image: { url: anu.data[0].thumbnail }, caption: teks
 break
 // ===================================== //
 case 'doujinsearch': {
+if (!isPrem) return reply(mess.prem)
 if (!q) return replygc(`Example ${prefix+command} Milf`)
 replygc(mess.wait)
 let anu = await fetchJson(`https://api.xyroinee.xyz/api/anime/doujin-search?q=${q}&apikey=${xyrokey}`)
@@ -1610,6 +1612,7 @@ replygc(teks)
 break
 // ===================================== //
 case 'xnxxsearch': {
+if (!isPrem) return reply(mess.prem)
 if (!q) return replygc(`Example ${prefix+command} Milf`)
 replygc(mess.wait)
 let anu = await fetchJson(`https://api.xyroinee.xyz/api/search/xnxx?q=${q}&apikey=${xyrokey}`)
