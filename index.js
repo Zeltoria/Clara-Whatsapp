@@ -146,14 +146,11 @@ const time = moment.tz('Asia/Jakarta').format('HH:mm:ss')
 const date = moment.tz('Asia/Jakarta').format('DD/MM/YYYY')
 const xmembers = metadata.participants.length
 ucapan = `
-┌─❖「  @${num.split("@")[0]}  」
-│✑  Welcome To: 
-│✑  ${metadata.subject}
-│✑  𝗠𝗲𝗺𝗯𝗲𝗿 : 
-│✑ ${xmembers}Th
-│✑  Pada : 
-│✑ ${time} ${date}
-└───────────────┈ ⳹`
+╭─❖「 ${metadata.subject} 」
+│❐ Welcome: @${num.split("@")[0]}
+│❐ Member: ${xmembers}Th
+│❐ Date: ${date}
+╰───────────────┈ ⳹`
 Clara.sendMessage(anu.id,
 { text: ucapan,
 contextInfo:{
@@ -172,14 +169,11 @@ const ttime = moment.tz('Asia/Jakarta').format('HH:mm:ss')
 const ddate = moment.tz('Asia/Jakarta').format('DD/MM/YYYY')
 const mmembers = metadata.participants.length
 sayonara = `
-┌─❖ 「 @${num.split("@")[0]}  」
-│✑  Out From:
-│✑ ${metadata.subject}
-│✑  𝗠𝗲𝗺𝗯𝗲𝗿 : 
-│✑ ${mmembers}th
-│✑  Time : 
-│✑  ${ttime} ${ddate}
-└───────────────┈ ⳹`
+╭─❖「 ${metadata.subject} 」
+│❐ Sayonara: @${num.split("@")[0]}
+│❐ Member: ${xmembers}Th
+│❐ Date: ${date}
+╰───────────────┈ ⳹`
 Clara.sendMessage(anu.id,
 { text: sayonara,
 contextInfo:{
@@ -205,7 +199,7 @@ mentionedJid:[num],
 "body": `${ownername}`,
 "previewType": "PHOTO",
 "thumbnailUrl": ``,
-"thumbnail": ppuser,
+"thumbnail": poto,
 "sourceUrl": `${gcwa}`}}})
 } else if (anu.action == 'demote') {
 katanya = `Yah... @${xeonName.split("@")[0]}, Bukan Admin Lagi`
