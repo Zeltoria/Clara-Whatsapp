@@ -7,12 +7,12 @@ global.apikeys = 'Apikeylu'
 // • https://api.xyroinee.xyz
 
 // Info Owner
-global.owner = ['6285760451683']
-global.nomorown = "6285760451683"
-global.ownername = "Xyroınee-ID."
-global.ownerNumber = ["6285760451683@s.whatsapp.net"]
-global.creator = "6285760451683@s.whatsapp.net"
-global.author = "Clara - MD"
+global.owner = ['6283153123534']
+global.nomorown = "6283153123534"
+global.ownername = "Sanbot-ID."
+global.ownerNumber = ["6283153123534@s.whatsapp.net"]
+global.creator = "6283153123534@s.whatsapp.net"
+global.author = "Isan - Lisa"
 global.location = "Indonesia"
 
 //Bot Setting
